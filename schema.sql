@@ -7,7 +7,7 @@
 --  error on the NMS database server):
 -- CREATE SCHEMA 
 -- USE 
-
+-- vim change
 CREATE TABLE Coach(
      CoachName VARCHAR (15) NOT NULL,
      CoachSurname VARCHAR(15) NOT NULL,
