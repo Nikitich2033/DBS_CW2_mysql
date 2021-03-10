@@ -23,9 +23,9 @@ CREATE TABLE Contender(
     stageName VARCHAR(25) UNIQUE NOT NULL,
     ContType VARCHAR (10) NOT NULL,
     idContender INT UNIQUE NOT NULL,
-    coach INT NOT NULL,
+    idCoach INT NOT NULL,
     PRIMARY KEY(idContender),
-    FOREIGN KEY(coach) 
+    FOREIGN KEY(idCoach) 
         REFERENCES Coach(idCoach)
         ON DELETE RESTRICT
         ON UPDATE CASCADE 
@@ -50,8 +50,8 @@ CREATE TABLE Participant(
 ##location can be NULL when it takes place in the TV studio
 CREATE TABLE TVShow(
     
-    location VARCHAR(15),
     ShowDate DATE NOT NULL,
+    location VARCHAR(25),
     idShow INT UNIQUE NOT NULL,
     startTime TIME NOT NULL,
     endTime TIME NOT NULL,
