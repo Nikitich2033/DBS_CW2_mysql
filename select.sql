@@ -32,7 +32,7 @@ LEFT JOIN CoachInShow
 ON Coach.idCoach = CoachInShow.idCoach
 LEFT JOIN TVShow
 ON TVShow.idShow = CoachInShow.idShow
-GROUP BY CoachName, CoachSurname, to_char(TVShow.ShowDate,"YYYY-MM");
+GROUP BY CoachName, CoachSurname, MONTH(TVShow.ShowDate)
 
 
 
