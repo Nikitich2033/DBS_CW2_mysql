@@ -47,7 +47,9 @@ CREATE TABLE Participant(
         ON DELETE RESTRICT
         ON UPDATE CASCADE
 );
+
 ##location can be NULL when it takes place in the TV studio
+
 CREATE TABLE TVShow(
     
     ShowDate DATE NOT NULL,

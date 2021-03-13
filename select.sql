@@ -24,10 +24,9 @@ ON Coach.idCoach = Contender.idCoach
 GROUP BY CoachName,CoachSurname
 ORDER BY COUNT(idContender);
 
-
 -- 3. Coach Monthly Attendance Report
 
-SELECT CoachName, CoachSurname,MONTHNAME(TVShow.ShowDate) as 'Month', COUNT(Coach.idCoach) AS No_Of_Shows_Attended
+SELECT CoachName, CoachSurname, MONTHNAME(TVShow.ShowDate) as 'Month', COUNT(Coach.idCoach) AS No_Of_Shows_Attended
 FROM Coach 
 LEFT JOIN CoachInShow
 ON Coach.idCoach = CoachInShow.idCoach
@@ -36,9 +35,17 @@ ON TVShow.idShow = CoachInShow.idShow
 GROUP BY CoachName, CoachSurname, MONTH(TVShow.ShowDate)
 ORDER BY CoachName, CoachSurname;
 
-
-
 -- 4. Most Expensive Contender
+
+SELECT stageName, dailySalary * COUNT(TVShow.idShow)
+FROM Participant
+LEFT JOIN Contender
+ON Participant.idContender = Contender.idContender
+LEFT JOIN ContenderInShow
+ON Contender.idContender = ContenderInShow.idContender
+LEFT JOIN TVShow
+ON TVShow.idContender = ContenderInShow.idContender
+GROUP BY stageName;
 
 
 
