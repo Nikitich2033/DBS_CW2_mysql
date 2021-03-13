@@ -58,7 +58,8 @@ ORDER BY CoachName, CoachSurname;
     LEFT JOIN ContenderInShow
     ON Contender.idContender = ContenderInShow.idContender
     LEFT JOIN TVShow
-    ON TVShow.idShow = ContenderInShow.idShow;
+    ON TVShow.idShow = ContenderInShow.idShow
+    GROUP BY stageName;
 
 
 
