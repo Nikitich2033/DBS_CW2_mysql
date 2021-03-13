@@ -46,8 +46,8 @@ ORDER BY CoachName, CoachSurname;
     LEFT JOIN ContenderInShow
     ON Contender.idContender = ContenderInShow.idContender
     LEFT JOIN TVShow
-    ON TVShow.idShow = ContenderInShow.idShow;
-    #GROUP BY stageName;  #)Total_Daily_Salary_Per_Contender
+    ON TVShow.idShow = ContenderInShow.idShow
+    GROUP BY stageName;  #)Total_Daily_Salary_Per_Contender
 
 -- 5. March Payment Report
 
