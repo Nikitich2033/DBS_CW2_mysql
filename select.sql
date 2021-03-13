@@ -18,7 +18,7 @@ WHERE gender = "Female";
 -- 2. Coaching Report.
 
 SELECT CoachName, CoachSurname, idContender
-FROM Coach LEFT JOIN Contender
+FROM Contender LEFT JOIN Coach
 ON Coach.idCoach = Contender.idCoach;
 
 
