@@ -17,6 +17,8 @@ WHERE gender = "Female";
 
 -- 2. Coaching Report.
 
+SELECT CoachName, CoachSurname, COUNT()
+FROM Coach, 
 
 
 -- 3. Coach Monthly Attendance Report
