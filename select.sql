@@ -51,7 +51,7 @@ ORDER BY CoachName, CoachSurname;
 
     --TRY SELECT ALL PARTICIPANTS, GROUP BY STAGE NAME AND CALCULATE SUM OF DAILY SALARY
 
-    SELECT idParticipant, idContender, dailySalary * COUNT(TVShow.idShow)
+    SELECT Participant.idParticipant, Participant.idContender, dailySalary * COUNT(TVShow.idShow)
     FROM Participant
     LEFT JOIN Contender
     ON Participant.idContender = Contender.idContender
