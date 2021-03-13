@@ -1,6 +1,6 @@
 -- Part 2.3 select.sql
 --
--- Submitted by: <Your Name>, <Your Student Number>
+-- Submitted by: Nikita Lyakhovoy, K20041405
 -- 
 
 -- DO NOT use these SQL commands in your submission(they will cause an 
@@ -11,7 +11,9 @@
 
 -- 1. Average Female Salary
 
-
+SELECT Average(Salary)
+FROM Participant
+WHERE gender = "Female";
 
 -- 2. Coaching Report.
 
