@@ -11,7 +11,7 @@
 
 -- 1. Average Female Salary
 
-SELECT Average(Salary)
+SELECT AVG(Salary)
 FROM Participant
 WHERE gender = "Female";
 
