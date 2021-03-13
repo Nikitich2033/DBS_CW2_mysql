@@ -32,6 +32,7 @@ LEFT JOIN CoachInShow
 ON Coach.idCoach = CoachInShow.idCoach
 LEFT JOIN TVShow
 ON TVShow.idShow = CoachInShow.idShow
+GROUP BY CoachName, CoachSurname;
 
 
 
