@@ -36,19 +36,18 @@ GROUP BY CoachName, CoachSurname, MONTH(TVShow.ShowDate)
 ORDER BY CoachName, CoachSurname;
 
 -- 4. Most Expensive Contender
-SELECT stageName, MAX(Total_Daily_Salary) AS Highest_Total_Daily_Salary
-FROM (SELECT stageName, dailySalary * COUNT(TVShow.idShow) as Total_Daily_Salary
-FROM Participant
-LEFT JOIN Contender
-ON Participant.idContender = Contender.idContender
-LEFT JOIN ContenderInShow
-ON Contender.idContender = ContenderInShow.idContender
-LEFT JOIN TVShow
-ON TVShow.idShow = ContenderInShow.idShow
-GROUP BY stageName;);
+SELECT stageName, MAX(Total_Daily_Salary_Per_Contender.Total_Daily_Salary) as Highest_Total_Daily_Salary
+FROM (
 
-
-
+    SELECT stageName, dailySalary * COUNT(TVShow.idShow) AS Total_Daily_Salary
+    FROM Participant
+    LEFT JOIN Contender
+    ON Participant.idContender = Contender.idContender
+    LEFT JOIN ContenderInShow
+    ON Contender.idContender = ContenderInShow.idContender
+    LEFT JOIN TVShow
+    ON TVShow.idShow = ContenderInShow.idShow
+    GROUP BY stageName) Total_Daily_Salary_Per_Contender
 
 -- 5. March Payment Report
 
