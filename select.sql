@@ -26,13 +26,14 @@ ORDER BY COUNT(idContender);
 
 
 -- 3. Coach Monthly Attendance Report
-SELECT CoachName, CoachSurname, COUNT(Coach.idCoach) AS No_Of_Shows_Attended
+SELECT CoachName, CoachSurname,YEAR(TVShow.ShowDate),MONTH(TVShow.ShowDate),COUNT(Coach.idCoach) AS No_Of_Shows_Attended
 FROM Coach 
 LEFT JOIN CoachInShow
 ON Coach.idCoach = CoachInShow.idCoach
 LEFT JOIN TVShow
 ON TVShow.idShow = CoachInShow.idShow
 GROUP BY CoachName, CoachSurname, MONTH(TVShow.ShowDate)
+ORDER BY MONTH(TVShow.ShowDate);
 
 
 
