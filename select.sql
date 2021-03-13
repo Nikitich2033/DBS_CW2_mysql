@@ -26,7 +26,7 @@ ORDER BY COUNT(idContender);
 
 
 -- 3. Coach Monthly Attendance Report
-SELECT CoachName, CoachSurname, COUNT(idCoach)
+SELECT CoachName, CoachSurname, COUNT(Coach.idCoach)
 FROM Coach 
 LEFT JOIN CoachInShow
 ON Coach.idCoach = CoachInShow.idCoach
