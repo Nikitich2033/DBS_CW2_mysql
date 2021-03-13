@@ -47,7 +47,8 @@ FROM (
     ON Contender.idContender = ContenderInShow.idContender
     LEFT JOIN TVShow
     ON TVShow.idShow = ContenderInShow.idShow
-    GROUP BY idParticipant) Total_Daily_Salary_Per_Contender;
+    GROUP BY idParticipant) Total_Daily_Salary_Per_Contender
+    GROUP BY stageName;
 
     --TRY SELECT ALL PARTICIPANTS, GROUP BY STAGE NAME AND CALCULATE SUM OF DAILY SALARY
 
