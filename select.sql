@@ -37,7 +37,7 @@ ORDER BY CoachName, CoachSurname;
 
 -- 4. Most Expensive Contender
 
-SELECT stageName, dailySalary * COUNT(TVShow.idShow) as Highest_Total_Daily_Salary
+SELECT stageName, MAX(dailySalary * COUNT(TVShow.idShow) as Highest_Total_Daily_Salary)
 FROM Participant
 LEFT JOIN Contender
 ON Participant.idContender = Contender.idContender
