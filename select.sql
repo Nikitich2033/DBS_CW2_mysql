@@ -39,7 +39,7 @@ ORDER BY CoachName, CoachSurname;
 #SELECT stageName, MAX(Total_Daily_Salary_Per_Contender.Total_Daily_Salary) as Highest_Total_Daily_Salary
 #FROM (
  
-    SELECT PartName, dailySalary * COUNT(TVShow.idShow) #AS Total_Daily_Salary
+    SELECT PartName, dailySalary * COUNT(TVShow.idShow) AS Total_Daily_Salary
     FROM Participant
     LEFT JOIN Contender
     ON Participant.idContender = Contender.idContender
