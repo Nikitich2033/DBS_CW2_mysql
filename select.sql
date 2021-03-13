@@ -17,9 +17,10 @@ WHERE gender = "Female";
 
 -- 2. Coaching Report.
 
-SELECT CoachName, CoachSurname, idContender
-FROM Contender LEFT JOIN Coach
-ON Coach.idCoach = Contender.idCoach;
+SELECT CoachName, CoachSurname, COUNT(idContender)
+FROM Coach,Contender
+WHERE Coach.idCoach = Contender.idCoach
+GROUP BY CoachName,CoachSurname;
 
 
 -- 3. Coach Monthly Attendance Report
