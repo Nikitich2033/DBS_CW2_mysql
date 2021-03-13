@@ -17,7 +17,7 @@ WHERE gender = "Female";
 
 -- 2. Coaching Report.
 
-SELECT CoachName, CoachSurname, COUNT(idContender) AS Num_Of_contenders_coached 
+SELECT CoachName, CoachSurname, COUNT(idContender) AS No_Of_contenders_coached 
 FROM Coach
 LEFT JOIN Contender
 ON Coach.idCoach = Contender.idCoach
@@ -26,13 +26,13 @@ ORDER BY COUNT(idContender);
 
 
 -- 3. Coach Monthly Attendance Report
-SELECT CoachName, CoachSurname, COUNT(Coach.idCoach)
+SELECT CoachName, CoachSurname, COUNT(Coach.idCoach) AS No_Of_Shows_Attended
 FROM Coach 
 LEFT JOIN CoachInShow
 ON Coach.idCoach = CoachInShow.idCoach
 LEFT JOIN TVShow
 ON TVShow.idShow = CoachInShow.idShow
-GROUP BY CoachName, CoachSurname;
+GROUP BY CoachName, CoachSurname, to_char(TVShow.ShowDate,"YYYY-MM");
 
 
 
