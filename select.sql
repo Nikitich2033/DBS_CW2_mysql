@@ -48,7 +48,7 @@ FROM (
     LEFT JOIN TVShow
     ON TVShow.idShow = ContenderInShow.idShow
     GROUP BY idParticipant) Total_Daily_Salary_Per_Contender
-    GROUP BY idContender, idParticipant;
+    GROUP BY idContender;
 
     
 
