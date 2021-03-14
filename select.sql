@@ -37,23 +37,29 @@ ORDER BY CoachName, CoachSurname;
 
 -- 4. Most Expensive Contender
 
-SELECT stageName, SUM(Participant_Total_Daily_Salary)
+SELECT stageName, MAX(Total_Daily_Salary_Per_Contender) as Highest_Total_Daily_Summary
 FROM(
-    SELECT stageName, PART_ID, MAX(Total_Daily_Salary_Per_Contender.Total_Daily_Salary) as Participant_Total_Daily_Salary
-    FROM (
- 
-        SELECT stageName, Participant.idParticipant as PART_ID,Participant.idContender, dailySalary * COUNT(TVShow.idShow) AS Total_Daily_Salary
-        FROM Participant
-        LEFT JOIN Contender
-        ON Participant.idContender = Contender.idContender
-        LEFT JOIN ContenderInShow
-        ON Contender.idContender = ContenderInShow.idContender
-        LEFT JOIN TVShow
-        ON TVShow.idShow = ContenderInShow.idShow
-        GROUP BY idParticipant) Total_Daily_Salary_Per_Contender
-        GROUP BY PART_ID) TotalByParticipant
-        
-    GROUP BY TotalByParticipant.stageName;
+    
+    SELECT stageName, SUM(Participant_Total_Daily_Salary) as Total_Daily_Salary_Per_Contender
+    FROM(
+        SELECT stageName, PART_ID, MAX(Total_Daily_Salary_Per_Contender_Participant.Total_Daily_Salary) as Participant_Total_Daily_Salary
+        FROM (
+    
+            SELECT stageName, Participant.idParticipant as PART_ID,Participant.idContender, dailySalary * COUNT(TVShow.idShow) AS Total_Daily_Salary
+            FROM Participant
+            LEFT JOIN Contender
+            ON Participant.idContender = Contender.idContender
+            LEFT JOIN ContenderInShow
+            ON Contender.idContender = ContenderInShow.idContender
+            LEFT JOIN TVShow
+            ON TVShow.idShow = ContenderInShow.idShow
+            GROUP BY idParticipant) Total_Daily_Salary_Per_Contender_Participant
+            GROUP BY PART_ID) TotalByParticipant
+            
+        GROUP BY TotalByParticipant.stageName) Total
+);
+
+
 
 
     
