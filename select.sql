@@ -39,7 +39,7 @@ ORDER BY CoachName, CoachSurname;
 
     
     SELECT stageName, SUM(Participant_Total_Daily_Salary) as Total_Daily_Salary_Per_Contender
-    FROM( 
+    FROM
         SELECT stageName, PART_ID, MAX(Total_Daily_Salary_Per_Contender_Participant.Total_Daily_Salary) as Participant_Total_Daily_Salary
         FROM (
     
@@ -52,8 +52,10 @@ ORDER BY CoachName, CoachSurname;
             LEFT JOIN TVShow
             ON TVShow.idShow = ContenderInShow.idShow
             GROUP BY idParticipant) Total_Daily_Salary_Per_Contender_Participant
-            GROUP BY PART_ID) TotalByParticipant;
+            GROUP BY PART_ID) TotalByParticipant
+            GROUP BY stageName;
             
+        
 
 
 
