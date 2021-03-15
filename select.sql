@@ -120,7 +120,7 @@ GROUP BY idParticipant;
 
 CREATE OR REPLACE VIEW TotalToPaidInMarch
 AS
-SELECT 'Type' = ISNULL('Type',"Total"),
+SELECT "Total",
         (SUM(CoachReportMarch.Total_Salary_for_March) 
         + SUM(ParticipantReportMarch.Total_Salary_for_March)) AS Total;
 FROM CoachReportMarch, ParticipantReportMarch
