@@ -56,7 +56,6 @@ ORDER BY CoachName, CoachSurname;
                 GROUP BY PART_ID) TotalByParticipant
                 GROUP BY stageName
     ) TotalByContender
-    WHERE CONT_ID = TotalByParticipant.CONT_ID
     ORDER BY stageName desc limit 1;
 
     
