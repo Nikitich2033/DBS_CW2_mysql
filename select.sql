@@ -90,7 +90,7 @@ SELECT ShowDate, idShow
 FROM TVShow
 WHERE MONTHNAME(ShowDate) = "March";
 
-SELECT CoachName, CoachSurname, dailySalary, COUNT(Coach.idCoach) AS No_Of_Shows_Attended
+SELECT CoachName, CoachSurname, dailySalary, COUNT(ShowIDsInMarch.idShow) AS No_Of_Shows_Attended
 FROM Coach 
 LEFT JOIN CoachInShow
 ON Coach.idCoach = CoachInShow.idCoach
