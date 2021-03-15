@@ -122,7 +122,7 @@ SELECT * FROM CoachReportMarch
 UNION
 SELECT * FROM ParticipantReportMarch
 UNION ALL
-SELECT 'Total' Name, SUM(CoachReportMarch.Total_Salary_for_March) + 
+SELECT 'Total' Name, NULL, NULL, SUM(CoachReportMarch.Total_Salary_for_March) + 
                      SUM(ParticipantReportMarch.Total_Salary_for_March)
 FROM CoachReportMarch, ParticipantReportMarch;
 
