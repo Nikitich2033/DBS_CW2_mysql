@@ -94,7 +94,7 @@ CREATE OR REPLACE VIEW CoachReportMarch
 AS
 SELECT CoachName as Name, CoachSurname as Surname, dailySalary, 
         COUNT(ShowIDsInMarch.idShow) AS No_Of_Shows_Attended_In_March,  
-        COUNT(ShowIDsInMarch.idShow) * dailySalary AS Total_Salary_for_March,
+        COUNT(ShowIDsInMarch.idShow) * dailySalary AS Total_Salary_for_March
     FROM Coach 
     LEFT JOIN CoachInShow
     ON Coach.idCoach = CoachInShow.idCoach
@@ -108,7 +108,7 @@ CREATE OR REPLACE VIEW ParticipantReportMarch
 AS
 SELECT PartName, PartSurname, dailySalary, 
                 COUNT(ShowIDsInMarch.idShow) AS No_Of_Shows_Attended_In_March,
-                dailySalary * COUNT(ShowIDsInMarch.idShow) AS Total_Salary_for_March,
+                dailySalary * COUNT(ShowIDsInMarch.idShow) AS Total_Salary_for_March
     FROM Participant
     LEFT JOIN Contender
     ON Participant.idContender = Contender.idContender
