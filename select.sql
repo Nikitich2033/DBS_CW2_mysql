@@ -56,8 +56,7 @@ ORDER BY CoachName, CoachSurname;
                 GROUP BY PART_ID) TotalByParticipant
                 GROUP BY stageName
     ) TotalByContender
-    ORDER BY stageName desc limit 1
-    GROUP BY stageName;
+    ORDER BY stageName desc limit 1;
 
     
             
