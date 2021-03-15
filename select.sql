@@ -36,21 +36,23 @@ GROUP BY CoachName, CoachSurname, MONTH(TVShow.ShowDate)
 ORDER BY CoachName, CoachSurname;
 
 -- 4. Most Expensive Contender
-
-#SELECT THE SUM OF SALARIES FOR EACH CONTENDER
 CREATE VIEW TotalByContender
 AS
-SELECT stageName, Participant.idParticipant as PART_ID, Participant.idContender as CONT_ID, dailySalary * COUNT(TVShow.idShow) AS Total_Daily_Salary
-            FROM Participant
-            LEFT JOIN Contender
-            ON Participant.idContender = Contender.idContender
-            LEFT JOIN ContenderInShow
-            ON Contender.idContender = ContenderInShow.idContender
+SELECT stageName, PART_ID, CONT_ID,Total_Daily_Salary_Per_Contender_Participant.Total_Daily_Salary as Participant_Total_Daily_Salary
+            FROM (
+        
+                SELECT stageName, Participant.idParticipant as PART_ID, Participant.idContender as CONT_ID, dailySalary * COUNT(TVShow.idShow) AS Total_Daily_Salary
+                FROM Participant
+                LEFT JOIN Contender
+                ON Participant.idContender = Contender.idContender
+                LEFT JOIN ContenderInShow
+                ON Contender.idContender = ContenderInShow.idContender
                 LEFT JOIN TVShow
                 ON TVShow.idShow = ContenderInShow.idShow
                 GROUP BY idParticipant) Total_Daily_Salary_Per_Contender_Participant
                 GROUP BY PART_ID) TotalByParticipant
-                GROUP BY stageName;
+                GROUP BY stageName
+);
 
 
 #SELECT ONLY THE ENTRY WITH THE HIGHEST SALARY 
@@ -63,13 +65,17 @@ FROM(
             SELECT stageName, PART_ID, CONT_ID,Total_Daily_Salary_Per_Contender_Participant.Total_Daily_Salary as Participant_Total_Daily_Salary
             FROM TotalByContender
 #COMPARE TO THE HIGHEST TOTAL SALARY OF A SINGLE CONTENDER
-            WHERE Total_Daily_Salary_Per_Contender = (SELECT MAX(Total_Daily_Salary_Per_Contender)
-                                                        FROM TotalByContender );
+WHERE Total_Daily_Salary_Per_Contender = (SELECT MAX(Total_Daily_Salary_Per_Contender)
+                                            FROM (
+                                                SELECT stageName, CONT_ID, SUM(Participant_Total_Daily_Salary) as Total_Daily_Salary_Per_Contender
+                                                FROM(
+                                                    SELECT stageName, PART_ID, CONT_ID,Total_Daily_Salary_Per_Contender_Participant.Total_Daily_Salary as Participant_Total_Daily_Salary
+                                                    FROM TotalByContender );
 
 
 -- 5. March Payment Report
 
-
+SELECT CoachName, CoachSurname
 
 -- 6. Well Formed Groups!
 
