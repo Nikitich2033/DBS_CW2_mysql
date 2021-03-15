@@ -50,7 +50,7 @@ SELECT stageName, Participant.idParticipant as PART_ID, Participant.idContender 
                 ON TVShow.idShow = ContenderInShow.idShow
                 GROUP BY idParticipant) Total_Daily_Salary_Per_Contender_Participant
                 GROUP BY PART_ID) TotalByParticipant
-                GROUP BY stageName
+                GROUP BY stageName;
 
 
 #SELECT ONLY THE ENTRY WITH THE HIGHEST SALARY 
@@ -64,7 +64,7 @@ FROM(
             FROM TotalByContender
 #COMPARE TO THE HIGHEST TOTAL SALARY OF A SINGLE CONTENDER
             WHERE Total_Daily_Salary_Per_Contender = (SELECT MAX(Total_Daily_Salary_Per_Contender)
-                                            FROM TotalByContender );
+                                                        FROM TotalByContender );
 
 
 -- 5. March Payment Report
