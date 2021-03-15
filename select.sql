@@ -92,7 +92,7 @@ WHERE MONTHNAME(ShowDate) = "March";
 
 CREATE OR REPLACE VIEW CoachReportMarch
 AS
-SELECT CoachName as 'Name', CoachSurname as 'Surname', dailySalary, 
+SELECT CoachName as Name, CoachSurname as Surname, dailySalary, 
         COUNT(ShowIDsInMarch.idShow) AS No_Of_Shows_Attended_In_March,  
         COUNT(ShowIDsInMarch.idShow) * dailySalary AS Total_Salary_for_March 
 FROM Coach 
