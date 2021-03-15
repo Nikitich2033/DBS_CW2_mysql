@@ -56,7 +56,7 @@ ORDER BY CoachName, CoachSurname;
                 GROUP BY PART_ID) TotalByParticipant
                 GROUP BY stageName
     ) TotalByContender
-    
+    GROUP BY Highest_Total_Daily_Salary;
 
     
             
