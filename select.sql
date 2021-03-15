@@ -105,9 +105,8 @@ ORDER BY CoachName, CoachSurname;
 
 CREATE OR REPLACE VIEW ParticipantReportMarch
 AS
-SELECT PartName, PartSurname, 
+SELECT PartName, PartSurname, dailySalary, 
                 COUNT(ShowIDsInMarch.idShow) AS No_Of_Shows_Attended_In_March,
-                dailySalary, 
                 dailySalary * COUNT(ShowIDsInMarch.idShow) AS Total_Salary_for_March
 FROM Participant
 LEFT JOIN Contender
@@ -119,7 +118,9 @@ ON ShowIDsInMarch.idShow = ContenderInShow.idShow
 GROUP BY idParticipant;
 
 
-SELECT * FROM CoachReportMarch, ParticipantReportMarch;
+SELECT * FROM CoachReportMarch
+UNION
+SELECT * FROM ParticipantReportMarch;
 
 
  
