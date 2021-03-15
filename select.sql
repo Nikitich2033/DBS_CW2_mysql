@@ -72,7 +72,7 @@ WHERE Total_Daily_Salary_Per_Contender = (SELECT MAX(Total_Daily_Salary_Per_Cont
                                                 SELECT stageName, CONT_ID, SUM(Participant_Total_Daily_Salary) as Total_Daily_Salary_Per_Contender
                                                 FROM(
                                                     SELECT stageName, PART_ID, CONT_ID,Total_Daily_Salary_Per_Contender_Participant.Total_Daily_Salary as Participant_Total_Daily_Salary
-                                                    FROM TotalByContender );
+                                                    FROM TotalByContender) TotalByContenderMAX );
 
 
 -- 5. March Payment Report
