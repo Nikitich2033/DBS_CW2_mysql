@@ -96,7 +96,7 @@ LEFT JOIN CoachInShow
 ON Coach.idCoach = CoachInShow.idCoach
 LEFT JOIN TVShow
 ON ShowIDsInMarch.idShow = CoachInShow.idShow
-GROUP BY CoachName, CoachSurname,
+GROUP BY CoachName, CoachSurname
 ORDER BY CoachName, CoachSurname;
 
 
