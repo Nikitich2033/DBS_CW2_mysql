@@ -127,10 +127,7 @@ FROM CoachReportMarch, ParticipantReportMarch;
 
 SELECT * FROM CoachReportMarch
 UNION
-SELECT * FROM ParticipantReportMarch
-UNION 
-SELECT * FROM TotalToPaidInMarch
-;
+SELECT * FROM ParticipantReportMarch;
 
 
  
