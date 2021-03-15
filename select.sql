@@ -84,15 +84,13 @@ WHERE Total_Daily_Salary_Per_Contender = (SELECT MAX(Total_Daily_Salary_Per_Cont
 
 -- 5. March Payment Report
 
-
-SELECT CoachName, CoachSurname, dailySalary, COUNT(Coach.idCoach) AS No_Of_Shows_Attended
-FROM Coach 
-LEFT JOIN CoachInShow
-ON Coach.idCoach = CoachInShow.idCoach
-LEFT JOIN TVShow
-ON TVShow.idShow = CoachInShow.idShow AND MONTHNAME(TVShow.ShowDate) = "March" 
-GROUP BY CoachName, CoachSurname, MONTH(TVShow.ShowDate)
-ORDER BY CoachName, CoachSurname;
+CREATE VIEW ShowIDsInMarch
+AS
+SELECT ShowDate, idShow 
+FROM TVShow
+WHERE MONTHNAME(ShowDate) = "March";
+ 
+SELECT * FROM ShowIDsInMarch;
 
 
 -- 6. Well Formed Groups!
