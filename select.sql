@@ -141,6 +141,7 @@ SELECT 'Total', NULL, NULL, NULL, (TotalForCoaches.Total + TotalForParticipants.
 FROM TotalForCoaches, TotalForParticipants;
 
 
+
 -- 6. Well Formed Groups!
 
 #Check if groups have more than one contender
