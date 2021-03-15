@@ -84,7 +84,7 @@ WHERE Total_Daily_Salary_Per_Contender = (SELECT MAX(Total_Daily_Salary_Per_Cont
 
 -- 5. March Payment Report
 
-CREATE VIEW ShowIDsInMarch
+CREATE OR REPLACE VIEW ShowIDsInMarch
 AS
 SELECT ShowDate, idShow 
 FROM TVShow
