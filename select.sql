@@ -122,7 +122,7 @@ CREATE OR REPLACE VIEW TotalToPaidInMarch
 AS
 SELECT "Total",
         (SUM(CoachReportMarch.Total_Salary_for_March) 
-        + SUM(ParticipantReportMarch.Total_Salary_for_March)) AS Total;
+        + SUM(ParticipantReportMarch.Total_Salary_for_March)) AS Total_To_Be_Paid_In_March;
 FROM CoachReportMarch, ParticipantReportMarch;
 
 SELECT * FROM CoachReportMarch
