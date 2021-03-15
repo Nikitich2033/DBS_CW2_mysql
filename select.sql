@@ -92,7 +92,7 @@ WHERE MONTHNAME(ShowDate) = "March";
 
 CREATE OR REPLACE VIEW CoachReportMarch
 AS
-SELECT CoachName, CoachSurname, dailySalary, 
+SELECT CoachName as 'Name', CoachSurname as 'Surname', dailySalary, 
         COUNT(ShowIDsInMarch.idShow) AS No_Of_Shows_Attended_In_March,  
         COUNT(ShowIDsInMarch.idShow) * dailySalary AS Total_Salary_for_March 
 FROM Coach 
@@ -118,9 +118,20 @@ ON ShowIDsInMarch.idShow = ContenderInShow.idShow
 GROUP BY idParticipant;
 
 
+CREATE OR REPLACE VIEW TotalToPaidInMarch
+AS
+SELECT Type = ISNULL(Type,"Total"),
+        SUM(CoachReportMarch.Total_Salary_for_March) 
+        + SUM(ParticipantReportMarch.Total_Salary_for_March) AS Total;
+FROM CoachReportMarch, ParticipantReportMarch
+GROUP BY ROLLUP(Type);
+
 SELECT * FROM CoachReportMarch
 UNION
-SELECT * FROM ParticipantReportMarch;
+SELECT * FROM ParticipantReportMarch
+UNION 
+SELECT * FROM TotalToPaidInMarch
+;
 
 
  
