@@ -52,7 +52,7 @@ SELECT  stageName, Participant.idParticipant as PART_ID, Participant.idContender
 
 CREATE VIEW TotalByContender
 AS
-SELECT stageName, PART_ID, CONT_ID,Total_Daily_Salary_Per_Contender_Participant.Total_Daily_Salary as Participant_Total_Daily_Salary
+SELECT stageName, PART_ID, CONT_ID,TotalByParticipant.Total_Daily_Salary as Participant_Total_Daily_Salary
             FROM TotalByParticipant    
             GROUP BY stageName;
 
@@ -65,7 +65,7 @@ FROM(
         FROM(
 #SELECT TOTAL DAILY SALARIES OF ALL PARTICIPANTS
             SELECT stageName, PART_ID, CONT_ID,Total_Daily_Salary_Per_Contender_Participant.Total_Daily_Salary as Participant_Total_Daily_Salary
-            FROM TotalByContender
+            FROM TotalByContender) TotalByContenderWithIDs
 #COMPARE TO THE HIGHEST TOTAL SALARY OF A SINGLE CONTENDER
 WHERE Total_Daily_Salary_Per_Contender = (SELECT MAX(Total_Daily_Salary_Per_Contender)
                                             FROM (
