@@ -96,9 +96,9 @@ SELECT CoachName as Name, CoachSurname as Surname, dailySalary,
         COUNT(ShowIDsInMarch.idShow) AS No_Of_Shows_Attended_In_March,  
         COUNT(ShowIDsInMarch.idShow) * dailySalary AS Total_Salary_for_March
     FROM Coach 
-    LEFT JOIN CoachInShow
+    LEFT OUTER JOIN CoachInShow
     ON Coach.idCoach = CoachInShow.idCoach
-    LEFT OUTER JOIN ShowIDsInMarch
+    LEFT JOIN ShowIDsInMarch
     ON ShowIDsInMarch.idShow = CoachInShow.idShow
     GROUP BY CoachName, CoachSurname
     ORDER BY CoachName, CoachSurname;
@@ -110,11 +110,11 @@ SELECT PartName, PartSurname, dailySalary,
                 COUNT(ShowIDsInMarch.idShow) AS No_Of_Shows_Attended_In_March,
                 dailySalary * COUNT(ShowIDsInMarch.idShow) AS Total_Salary_for_March
     FROM Participant
-    LEFT JOIN Contender
+    LEFT OUTER JOIN Contender
     ON Participant.idContender = Contender.idContender
     LEFT JOIN ContenderInShow
     ON Contender.idContender = ContenderInShow.idContender
-    LEFT OUTER JOIN ShowIDsInMarch
+    LEFT JOIN ShowIDsInMarch
     ON ShowIDsInMarch.idShow = ContenderInShow.idShow
     GROUP BY idParticipant;
 
