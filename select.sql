@@ -121,12 +121,14 @@ SELECT PartName, PartSurname, dailySalary,
 CREATE OR REPLACE VIEW TotalForParticipants 
 AS 
 SELECT SUM(ParticipantReportMarch.Total_Salary_for_March)
-FROM CoachReportMarch, ParticipantReportMarch;
+FROM CoachReportMarch, ParticipantReportMarch
+GROUP BY Name;
 
 CREATE OR REPLACE VIEW TotalForCoaches 
 AS 
 SELECT SUM(ParticipantReportMarch.Total_Salary_for_March)
-FROM CoachReportMarch, ParticipantReportMarch;
+FROM CoachReportMarch, ParticipantReportMarch
+GROUP BY Name;
 
 SELECT * FROM CoachReportMarch
 UNION
