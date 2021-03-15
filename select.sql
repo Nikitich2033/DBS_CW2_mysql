@@ -44,7 +44,7 @@ ORDER BY CoachName, CoachSurname;
             SELECT stageName, PART_ID, CONT_ID,Total_Daily_Salary_Per_Contender_Participant.Total_Daily_Salary as Participant_Total_Daily_Salary
             FROM (
         
-                SELECT stageName, Participant.idParticipant as, PART_ID,Participant.idContender as CONT_ID, dailySalary * COUNT(TVShow.idShow) AS Total_Daily_Salary
+                SELECT stageName, Participant.idParticipant as PART_ID, Participant.idContender as CONT_ID, dailySalary * COUNT(TVShow.idShow) AS Total_Daily_Salary
                 FROM Participant
                 LEFT JOIN Contender
                 ON Participant.idContender = Contender.idContender
