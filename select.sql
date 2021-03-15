@@ -98,7 +98,7 @@ SELECT CoachName as Name, CoachSurname as Surname, dailySalary,
     FROM Coach 
     LEFT JOIN CoachInShow
     ON Coach.idCoach = CoachInShow.idCoach
-    LEFT JOIN ShowIDsInMarch
+    LEFT OUTER JOIN ShowIDsInMarch
     ON ShowIDsInMarch.idShow = CoachInShow.idShow
     GROUP BY CoachName, CoachSurname
     ORDER BY CoachName, CoachSurname;
@@ -114,7 +114,7 @@ SELECT PartName, PartSurname, dailySalary,
     ON Participant.idContender = Contender.idContender
     LEFT JOIN ContenderInShow
     ON Contender.idContender = ContenderInShow.idContender
-    LEFT JOIN ShowIDsInMarch
+    LEFT OUTER JOIN ShowIDsInMarch
     ON ShowIDsInMarch.idShow = ContenderInShow.idShow
     GROUP BY idParticipant;
 
