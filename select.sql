@@ -118,7 +118,10 @@ LEFT JOIN ShowIDsInMarch
 ON ShowIDsInMarch.idShow = ContenderInShow.idShow
 GROUP BY idParticipant;
 
-select * from ParticipantReportMarch;
+
+SELECT * FROM CoachReportMarch, ParticipantReportMarch;
+
+
  
 
 
