@@ -94,7 +94,7 @@ SELECT CoachName, CoachSurname, dailySalary, COUNT(Coach.idCoach) AS No_Of_Shows
 FROM Coach 
 LEFT JOIN CoachInShow
 ON Coach.idCoach = CoachInShow.idCoach
-LEFT JOIN TVShow
+LEFT JOIN ShowIDsInMarch
 ON ShowIDsInMarch.idShow = CoachInShow.idShow
 GROUP BY CoachName, CoachSurname
 ORDER BY CoachName, CoachSurname;
