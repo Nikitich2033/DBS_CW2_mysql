@@ -119,16 +119,21 @@ SELECT PartName, PartSurname, dailySalary,
     GROUP BY idParticipant;
 
 
-CREATE OR REPLACE VIEW TotalToPaidInMarch
-AS
+#CREATE OR REPLACE VIEW TotalToPaidInMarch
+#AS
+#SELECT "Total",
+ #       (SUM(CoachReportMarch.Total_Salary_for_March) 
+  #      + SUM(ParticipantReportMarch.Total_Salary_for_March)) AS Total_To_Be_Paid_In_March;
+#FROM CoachReportMarch, ParticipantReportMarch;
+
+SELECT * FROM CoachReportMarch
+UNION
+SELECT * FROM ParticipantReportMarch
+UNION
 SELECT "Total",
         (SUM(CoachReportMarch.Total_Salary_for_March) 
         + SUM(ParticipantReportMarch.Total_Salary_for_March)) AS Total_To_Be_Paid_In_March;
 FROM CoachReportMarch, ParticipantReportMarch;
-
-SELECT * FROM CoachReportMarch
-UNION
-SELECT * FROM ParticipantReportMarch;
 
 
  
