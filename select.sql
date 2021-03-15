@@ -88,7 +88,7 @@ CREATE OR REPLACE VIEW ShowIDsInMarch
 AS
 SELECT ShowDate, idShow 
 FROM TVShow
-WHERE MONTHNAME(ShowDate) = "March";
+WHERE MONTHNAME(ShowDate) = "April";
 
 SELECT CoachName, CoachSurname, dailySalary, COUNT(ShowIDsInMarch.idShow) AS No_Of_Shows_Attended
 FROM Coach 
