@@ -125,7 +125,7 @@ UNION
 SELECT 'Total' Name, NULL, NULL, NULL, SUM(CoachReportMarch.Total_Salary_for_March) + 
                      SUM(ParticipantReportMarch.Total_Salary_for_March)
 FROM CoachReportMarch, ParticipantReportMarch
-GROUP BY Name;
+GROUP BY Name, Surname;
 
 
 
