@@ -56,9 +56,22 @@ ORDER BY CoachName, CoachSurname;
                 GROUP BY idParticipant) Total_Daily_Salary_Per_Contender_Participant
                 GROUP BY PART_ID) TotalByParticipant
                 GROUP BY stageName
-    ) TotalByContender
+        ) TotalByContender
     WHERE Total_Daily_Salary_Per_Contender = (SELECT MAX(Total_Daily_Salary_Per_Contender) 
-                                               FROM TotalByContender);
+                                               FROM SELECT stageName, PART_ID, CONT_ID,Total_Daily_Salary_Per_Contender_Participant.Total_Daily_Salary as Participant_Total_Daily_Salary
+                                                    FROM (
+                                                
+                                                        SELECT stageName, Participant.idParticipant as PART_ID, Participant.idContender as CONT_ID, dailySalary * COUNT(TVShow.idShow) AS Total_Daily_Salary
+                                                        FROM Participant
+                                                        LEFT JOIN Contender
+                                                        ON Participant.idContender = Contender.idContender
+                                                        LEFT JOIN ContenderInShow
+                                                        ON Contender.idContender = ContenderInShow.idContender
+                                                        LEFT JOIN TVShow
+                                                        ON TVShow.idShow = ContenderInShow.idShow
+                                                        GROUP BY idParticipant) Total_Daily_Salary_Per_Contender_Participant
+                                                        GROUP BY PART_ID) TotalByParticipant
+                                                        GROUP BY stageName);
 
     
             
