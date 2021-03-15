@@ -55,7 +55,7 @@ ORDER BY CoachName, CoachSurname;
                 GROUP BY idParticipant) Total_Daily_Salary_Per_Contender_Participant
                 GROUP BY PART_ID) TotalByParticipant
                 GROUP BY stageName
-    )
+    ) TotalByContender
     GROUP BY stageName;
 
     
