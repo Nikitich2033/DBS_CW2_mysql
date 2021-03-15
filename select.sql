@@ -130,7 +130,7 @@ UNION
 SELECT * FROM ParticipantReportMarch
 UNION 
 SELECT 'Total', NULL, NULL, NULL, Totals.Coaches_Total + 
-                     Total.Participants_Total
+                     Totals.Participants_Total
 FROM CoachReportMarch, ParticipantReportMarch;
 
 
