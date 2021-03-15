@@ -46,7 +46,7 @@ SELECT  stageName, Participant.idParticipant as PART_ID, Participant.idContender
                 ON Contender.idContender = ContenderInShow.idContender
                 LEFT JOIN TVShow
                 ON TVShow.idShow = ContenderInShow.idShow
-                GROUP BY idParticipant
+                GROUP BY idParticipant;
                 
 
 
