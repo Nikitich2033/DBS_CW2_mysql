@@ -75,7 +75,7 @@ WHERE Total_Daily_Salary_Per_Contender = (SELECT MAX(Total_Daily_Salary_Per_Cont
 
 -- 5. March Payment Report
 
-SELECT CoachName, CoachSurname
+
 
 -- 6. Well Formed Groups!
 
