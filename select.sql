@@ -120,24 +120,21 @@ SELECT PartName, PartSurname, dailySalary,
 
 CREATE OR REPLACE VIEW TotalForParticipants 
 AS 
-SELECT SUM(ParticipantReportMarch.Total_Salary_for_March)
+SELECT SUM(ParticipantReportMarch.Total_Salary_for_March) as Total
 FROM ParticipantReportMarch;
 
 CREATE OR REPLACE VIEW TotalForCoaches 
 AS 
-SELECT SUM(CoachReportMarch.Total_Salary_for_March)
+SELECT SUM(CoachReportMarch.Total_Salary_for_March) as Total
 FROM CoachReportMarch;
 
-SELECT * FROM CoachReportMarch
-UNION
-SELECT * FROM ParticipantReportMarch;
+
 
 SELECT * FROM TotalForParticipants;
 SELECT * FROM TotalForCoaches;
-#UNION 
-#SELECT 'Total', NULL, NULL, NULL, SUM(CoachReportMarch.Total_Salary_for_March 
-#                                    + ParticipantReportMarch.Total_Salary_for_March)    
-#FROM CoachReportMarch, ParticipantReportMarch;
+UNION 
+SELECT 'Total', NULL, NULL, NULL, TotalForCoaches.Total + TotalForParticipants.Total   
+FROM CoachReportMarch, ParticipantReportMarch;
 
 
 
