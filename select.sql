@@ -37,7 +37,7 @@ ORDER BY CoachName, CoachSurname;
 
 -- 4. Most Expensive Contender
 
-    SELECT stageName, MAX(Total_Daily_Salary_Per_Contender)
+    SELECT stageName, MAX(Total_Daily_Salary_Per_Contender) as Highest_Total_Daily_Salary
     FROM(
         SELECT stageName, SUM(Participant_Total_Daily_Salary) as Total_Daily_Salary_Per_Contender
         FROM(
@@ -56,7 +56,7 @@ ORDER BY CoachName, CoachSurname;
                 GROUP BY PART_ID) TotalByParticipant
                 GROUP BY stageName
     ) TotalByContender
-    GROUP BY stageName;
+    
 
     
             
