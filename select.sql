@@ -37,6 +37,7 @@ ORDER BY CoachName, CoachSurname;
 
 -- 4. Most Expensive Contender
 
+#SELECT THE SUM OF SALARIES FOR EACH CONTENDER
 CREATE VIEW TotalByContender
 AS
 SELECT stageName, Participant.idParticipant as PART_ID, Participant.idContender as CONT_ID, dailySalary * COUNT(TVShow.idShow) AS Total_Daily_Salary
@@ -63,7 +64,7 @@ FROM(
             FROM TotalByContender
 #COMPARE TO THE HIGHEST TOTAL SALARY OF A SINGLE CONTENDER
             WHERE Total_Daily_Salary_Per_Contender = (SELECT MAX(Total_Daily_Salary_Per_Contender)
-                                                        FROM TotalByContender;
+                                            FROM TotalByContender );
 
 
 -- 5. March Payment Report
