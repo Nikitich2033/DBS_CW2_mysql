@@ -126,7 +126,7 @@ GROUP BY Name;
 
 CREATE OR REPLACE VIEW TotalForCoaches 
 AS 
-SELECT SUM(ParticipantReportMarch.Total_Salary_for_March)
+SELECT SUM(CoachReportMarch.Total_Salary_for_March)
 FROM CoachReportMarch, ParticipantReportMarch
 GROUP BY Name;
 
