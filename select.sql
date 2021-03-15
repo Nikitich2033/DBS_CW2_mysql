@@ -118,13 +118,15 @@ SELECT PartName, PartSurname, dailySalary,
     ON ShowIDsInMarch.idShow = ContenderInShow.idShow
     GROUP BY idParticipant;
 
-CREATE OR REPLACE VIEW Totals 
+CREATE OR REPLACE VIEW TotalForParticipants 
 AS 
-SELECT SUM(CoachReportMarch.Total_Salary_for_March),
-        SUM(ParticipantReportMarch.Total_Salary_for_March)
-FROM CoachReportMarch, ParticipantReportMarch
-GROUP BY Name
-;
+SELECT SUM(ParticipantReportMarch.Total_Salary_for_March)
+FROM CoachReportMarch, ParticipantReportMarch;
+
+CREATE OR REPLACE VIEW TotalForCoaches 
+AS 
+SELECT SUM(ParticipantReportMarch.Total_Salary_for_March)
+FROM CoachReportMarch, ParticipantReportMarch;
 
 SELECT * FROM CoachReportMarch
 UNION
