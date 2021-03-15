@@ -46,8 +46,8 @@ SELECT  stageName, Participant.idParticipant as PART_ID, Participant.idContender
                 ON Contender.idContender = ContenderInShow.idContender
                 LEFT JOIN TVShow
                 ON TVShow.idShow = ContenderInShow.idShow
-                GROUP BY idParticipant) Total_Daily_Salary_Per_Contender_Participant
-                GROUP BY PART_ID) TotalByParticipant;
+                GROUP BY idParticipant
+                
 
 
 CREATE VIEW TotalByContender
