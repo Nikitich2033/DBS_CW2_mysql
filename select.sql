@@ -88,9 +88,12 @@ CREATE OR REPLACE VIEW ShowIDsInMarch
 AS
 SELECT ShowDate, idShow 
 FROM TVShow
-WHERE MONTHNAME(ShowDate) = "April";
+WHERE MONTHNAME(ShowDate) = "March";
 
-SELECT CoachName, CoachSurname, dailySalary, COUNT(ShowIDsInMarch.idShow) AS No_Of_Shows_Attended
+CREATE OR REPLACE VIEW CoachReportMarch
+SELECT CoachName, CoachSurname, dailySalary, 
+        COUNT(ShowIDsInMarch.idShow) AS No_Of_Shows_Attended_In_March,  
+         No_Of_Shows_Attended_In_March * dailySalary AS Total_Salary_for_March 
 FROM Coach 
 LEFT JOIN CoachInShow
 ON Coach.idCoach = CoachInShow.idCoach
@@ -98,6 +101,11 @@ LEFT JOIN ShowIDsInMarch
 ON ShowIDsInMarch.idShow = CoachInShow.idShow
 GROUP BY CoachName, CoachSurname
 ORDER BY CoachName, CoachSurname;
+
+select * from CoachReportMarch;
+
+
+
 
 
 -- 6. Well Formed Groups!
