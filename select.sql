@@ -123,8 +123,7 @@ AS
 SELECT "Total",
         (SUM(CoachReportMarch.Total_Salary_for_March) 
         + SUM(ParticipantReportMarch.Total_Salary_for_March)) AS Total;
-FROM CoachReportMarch, ParticipantReportMarch
-GROUP BY ROLLUP(Type);
+FROM CoachReportMarch, ParticipantReportMarch;
 
 SELECT * FROM CoachReportMarch
 UNION
