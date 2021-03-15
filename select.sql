@@ -129,12 +129,12 @@ SELECT SUM(CoachReportMarch.Total_Salary_for_March) as Total
 FROM CoachReportMarch;
 
 
-
-SELECT * FROM TotalForParticipants;
-SELECT * FROM TotalForCoaches;
+SELECT * FROM CoachReportMarch
+UNION
+SELECT * FROM ParticipantReportMarch
 UNION 
-SELECT 'Total', NULL, NULL, NULL, TotalForCoaches.Total + TotalForParticipants.Total   
-FROM CoachReportMarch, ParticipantReportMarch;
+SELECT 'Total', NULL, NULL, NULL, (TotalForCoaches.Total + TotalForParticipants.Total)   
+FROM TotalForCoaches, TotalForParticipants;
 
 
 
