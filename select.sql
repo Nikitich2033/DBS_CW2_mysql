@@ -84,12 +84,14 @@ WHERE Total_Daily_Salary_Per_Contender = (SELECT MAX(Total_Daily_Salary_Per_Cont
 
 -- 5. March Payment Report
 
+#Get all Show IDs from March
 CREATE OR REPLACE VIEW ShowIDsInMarch
 AS
 SELECT ShowDate, idShow 
 FROM TVShow
 WHERE MONTHNAME(ShowDate) = "March";
 
+#Create a separate report view for coaches and their totals
 CREATE OR REPLACE VIEW CoachReportMarch
 AS
 SELECT CoachName as Name, CoachSurname as Surname, dailySalary, 
@@ -103,7 +105,7 @@ SELECT CoachName as Name, CoachSurname as Surname, dailySalary,
     GROUP BY CoachName, CoachSurname
     ORDER BY CoachName, CoachSurname;
 
-
+#Create a separate report view for participants and their totals
 CREATE OR REPLACE VIEW ParticipantReportMarch
 AS
 SELECT PartName, PartSurname, dailySalary, 
@@ -118,17 +120,19 @@ SELECT PartName, PartSurname, dailySalary,
     ON ShowIDsInMarch.idShow = ContenderInShow.idShow
     GROUP BY idParticipant;
 
+#Calculate the total for all participants
 CREATE OR REPLACE VIEW TotalForParticipants 
 AS 
 SELECT SUM(ParticipantReportMarch.Total_Salary_for_March) as Total
 FROM ParticipantReportMarch;
 
+#Calculate the total for all coaches
 CREATE OR REPLACE VIEW TotalForCoaches 
 AS 
 SELECT SUM(CoachReportMarch.Total_Salary_for_March) as Total
 FROM CoachReportMarch;
 
-
+#Output a tables with the final results and Total as the bottom row
 SELECT * FROM CoachReportMarch
 UNION
 SELECT * FROM ParticipantReportMarch
@@ -137,12 +141,6 @@ SELECT 'Total', NULL, NULL, NULL, (TotalForCoaches.Total + TotalForParticipants.
 FROM TotalForCoaches, TotalForParticipants;
 
 
-
- 
-
-
-
-
-
 -- 6. Well Formed Groups!
 
+#Check if groups have more than one contender
