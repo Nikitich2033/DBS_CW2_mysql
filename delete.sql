@@ -24,7 +24,7 @@ WHERE Total_Daily_Salary_Per_Contender = (SELECT MIN(Total_Daily_Salary_Per_Cont
 AND TotalByContender.stageName = Contender.stageName;
 
 DELETE Contender
-FROM  Contender
+FROM  Contender, LowestTotalSalary
 WHERE Contender.idContender = LowestTotalSalary.idContender;
 
 
