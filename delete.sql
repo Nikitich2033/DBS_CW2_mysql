@@ -16,7 +16,7 @@ CREATE OR REPLACE VIEW Total_Daily_Salary_By_idParticipant
 AS
 SELECT stageName, Participant.idParticipant as PART_ID, 
                 Participant.idContender as CONT_ID, 
-                hourlyPayment * COUNT(TVShow.idShow) * 4 AS Total_Daily_Salary
+                (hourlyPayment * COUNT(TVShow.idShow) * 4) AS Total_Daily_Salary
         FROM Participant
         LEFT JOIN Contender
         ON Participant.idContender = Contender.idContender
@@ -25,6 +25,7 @@ SELECT stageName, Participant.idParticipant as PART_ID,
         LEFT JOIN TVShow
         ON TVShow.idShow = ContenderInShow.idShow
         GROUP BY idParticipant;
+
 
 -- SELECT TOTAL DAILY SALARY OF EACH PARTICIPANT 
 CREATE OR REPLACE VIEW TotalByParticipant
