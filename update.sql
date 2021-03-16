@@ -15,12 +15,12 @@
 ALTER TABLE Coach 
 CHANGE COLUMN dailySalary 
                 hourlyPayment
-                DECIMAL(10,2) NOT NULL,;
+                DECIMAL(10,2) NOT NULL;
 
 ALTER TABLE Participant
 CHANGE COLUMN dailySalary 
                 hourlyPayment
-                DECIMAL(10,2) NOT NULL,;
+                DECIMAL(10,2) NOT NULL;
 
 UPDATE Coach 
 SET hourlyPayment = hourlyPayment/4;
