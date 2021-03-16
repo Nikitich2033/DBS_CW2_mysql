@@ -69,7 +69,6 @@ FROM TotalByParticipant
 GROUP BY stageName;
 
 
-
 -- SELECT ONLY THE ENTRY WITH THE HIGHEST SALARY 
 SELECT stageName, Total_Daily_Salary_Per_Contender as Highest_Total_Daily_Salary
 FROM TotalByContender
