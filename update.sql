@@ -35,6 +35,10 @@ select * from Participant;
 
 -- 2. Add new fields to the attendance table to register when coaches and contenders arrive to and leave the shows.
 
+CREATE OR REPLACE VIEW ShowTimes
+AS
+SELECT idShow, startTime, endTime
+FROM TVShow;
 
 ALTER TABLE CoachInShow
 ADD COLUMN ArriveTime TIME NOT NULL,
