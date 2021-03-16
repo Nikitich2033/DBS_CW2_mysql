@@ -1,6 +1,6 @@
 -- Part 2.4 update.sql
 --
--- Submitted by: <Your Name>, <Your Student Number>
+-- Submitted by: Nikita Lyakhovoy, K20041405
 -- 
 
 -- DO NOT use these SQL commands in your submission(they will cause an 
@@ -9,3 +9,21 @@
 -- USE 
 
 
+
+-- 1. Hourly Payment instead 
+
+ALTER TABLE Coach 
+CHANGE dailySalary hourlyPayment;
+
+ALTER TABLE Participant
+CHANGE dailySalary hourlyPayment;
+
+UPDATE Coach 
+SET hourlyPayment = hourlyPayment/4;
+
+UPDATE Participant
+SET hourlyPayment = hourlyPayment/4;
+
+
+select * from Coach;
+select * from Participant;
