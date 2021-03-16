@@ -15,7 +15,7 @@ CREATE TABLE Coach(
      DoB DATE NOT NULL,
      idCoach INT UNIQUE NOT NULL,
 -- Phone number is just a sequence of 10 numbers without a country code
-     phone INTEGER(10) UNIQUE NOT NULL,
+     phone VARCHAR(10) UNIQUE NOT NULL,
 -- Salary is defined as a decimal with 10 numbers in front and 2 numbers 
 -- after the decimal point, because salaries are highly unlikely to exceed that
      dailySalary DECIMAL(10,2) NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE Participant(
     DoB DATE NOT NULL,
     idParticipant INT UNIQUE NOT NULL,
 -- Phone number is just a sequence of 10 numbers without a country code
-    phone INTEGER(10) UNIQUE NOT NULL,
+    phone VARCHAR(10) UNIQUE NOT NULL,
     dailySalary DECIMAL(10,2) NOT NULL,
     gender VARCHAR(6) NOT NULL,
     idContender INT NOT NULL,
