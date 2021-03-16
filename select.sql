@@ -38,6 +38,7 @@ ORDER BY CoachName, CoachSurname;
 -- 4. Most Expensive Contender
 
 CREATE OR REPLACE VIEW TotalByContender
+AS
 -- SELECT THE SUM OF SALARIES FOR EACH CONTENDER
 SELECT stageName, CONT_ID, SUM(Participant_Total_Daily_Salary) as Total_Daily_Salary_Per_Contender
 FROM(
