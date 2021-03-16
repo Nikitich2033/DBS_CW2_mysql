@@ -163,20 +163,30 @@ SELECT CONT_ID, No_Of_Participants_In_Group
 FROM CountParticipantInGroups
 WHERE No_Of_Participants_In_Group > 1;
 
-INSERT INTO Contender VALUES ("FakeGroup",'Group',9,2);   
-INSERT INTO Participant VALUES ("Fake","Guy",'1993-10-13',11,"2745763957",100.00,"Male",9);              
 
-SELECT * FROM GetAllGroupIDS;
-
-SELECT * FROM CountParticipantInGroups;
-
-SELECT * FROM OnlyWellFormedGroups;
-
+--TEST BEFORE INSERTING A NON WELL FORMED GROUP
+-- Compare the number of rows in the 2 views and see if they are the same
 SELECT  
      CASE WHEN (SELECT COUNT(*) FROM OnlyWellFormedGroups) = (SELECT COUNT(*) FROM CountParticipantInGroups)
+-- Comparison in SQL returns Boolean in the form of 1/0, but I have changed it to True/False as the question said so
      THEN "True" 
      ELSE "False"
      END AS All_Groups_Are_WellFormed;
 
+
+INSERT INTO Contender VALUES ("FakeGroup",'Group',9,2);   
+INSERT INTO Participant VALUES ("Fake","Guy",'1993-10-13',11,"2745763957",100.00,"Male",9);              
+
+
+--TEST AFTER INSERTING A NON WELL FORMED GROUP
+-- Compare the number of rows in the 2 views and see if they are the same
+SELECT  
+     CASE WHEN (SELECT COUNT(*) FROM OnlyWellFormedGroups) = (SELECT COUNT(*) FROM CountParticipantInGroups)
+-- Comparison in SQL returns Boolean in the form of 1/0, but I have changed it to True/False as the question said so
+     THEN "True" 
+     ELSE "False"
+     END AS All_Groups_Are_WellFormed;
+
+--DELETING THE ENTRIES INSERTED FOR TESTING
 DELETE FROM Participant WHERE PartName = "Fake";
 DELETE FROM Contender WHERE stageName = "FakeGroup";
