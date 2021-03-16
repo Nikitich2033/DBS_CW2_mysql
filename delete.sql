@@ -45,7 +45,3 @@ AND TotalByContender.stageName = Contender.stageName;
 DELETE Contender
 FROM  Contender, LowestTotalSalary
 WHERE Contender.idContender = LowestTotalSalary.idContender;
-
-SELECT * FROM Participant;
-SELECT * FROM Contender;
-SELECT * FROM ContenderInShow;
