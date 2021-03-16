@@ -38,13 +38,13 @@ ORDER BY CoachName, CoachSurname;
 -- 4. Most Expensive Contender
     
 
-#SELECT ONLY THE ENTRY WITH THE HIGHEST SALARY 
+-- SELECT ONLY THE ENTRY WITH THE HIGHEST SALARY 
 SELECT stageName, Total_Daily_Salary_Per_Contender as Highest_Total_Daily_Salary
 FROM(
-#SELECT THE SUM OF SALARIES FOR EACH CONTENDER
+-- SELECT THE SUM OF SALARIES FOR EACH CONTENDER
     SELECT stageName, CONT_ID, SUM(Participant_Total_Daily_Salary) as Total_Daily_Salary_Per_Contender
         FROM(
-#SELECT TOTAL DAILY SALARIES OF ALL PARTICIPANTS
+-- SELECT TOTAL DAILY SALARIES OF ALL PARTICIPANTS
             SELECT stageName, PART_ID, CONT_ID,Total_Daily_Salary_Per_Contender_Participant.Total_Daily_Salary as Participant_Total_Daily_Salary
             FROM (
         
@@ -60,7 +60,7 @@ FROM(
                 GROUP BY PART_ID) TotalByParticipant
                 GROUP BY stageName
 ) TotalByContender
-#COMPARE TO THE HIGHEST TOTAL SALARY OF A SINGLE CONTENDER
+-- COMPARE TO THE HIGHEST TOTAL SALARY OF A SINGLE CONTENDER
 WHERE Total_Daily_Salary_Per_Contender = (SELECT MAX(Total_Daily_Salary_Per_Contender)
                                             FROM (
                                                 SELECT stageName, CONT_ID, SUM(Participant_Total_Daily_Salary) as Total_Daily_Salary_Per_Contender
@@ -84,14 +84,14 @@ WHERE Total_Daily_Salary_Per_Contender = (SELECT MAX(Total_Daily_Salary_Per_Cont
 
 -- 5. March Payment Report
 
-#Get all Show IDs from March
+-- Get all Show IDs from March
 CREATE OR REPLACE VIEW ShowIDsInMarch
 AS
 SELECT ShowDate, idShow 
 FROM TVShow
 WHERE MONTHNAME(ShowDate) = "March";
 
-#Create a separate report view for coaches and their totals
+-- Create a separate report view for coaches and their totals
 CREATE OR REPLACE VIEW CoachReportMarch
 AS
 SELECT CoachName as Name, CoachSurname as Surname, dailySalary, 
@@ -105,7 +105,7 @@ SELECT CoachName as Name, CoachSurname as Surname, dailySalary,
     GROUP BY CoachName, CoachSurname
     ORDER BY CoachName, CoachSurname;
 
-#Create a separate report view for participants and their totals
+-- Create a separate report view for participants and their totals
 CREATE OR REPLACE VIEW ParticipantReportMarch
 AS
 SELECT PartName, PartSurname, dailySalary, 
@@ -120,19 +120,19 @@ SELECT PartName, PartSurname, dailySalary,
     ON ShowIDsInMarch.idShow = ContenderInShow.idShow
     GROUP BY idParticipant;
 
-#Calculate the total for all participants
+-- Calculate the total for all participants
 CREATE OR REPLACE VIEW TotalForParticipants 
 AS 
 SELECT SUM(ParticipantReportMarch.Total_Salary_for_March) as Total
 FROM ParticipantReportMarch;
 
-#Calculate the total for all coaches
+-- Calculate the total for all coaches
 CREATE OR REPLACE VIEW TotalForCoaches 
 AS 
 SELECT SUM(CoachReportMarch.Total_Salary_for_March) as Total
 FROM CoachReportMarch;
 
-#Output a tables with the final results and Total as the bottom row
+-- Output a tables with the final results and Total as the bottom row
 SELECT * FROM CoachReportMarch
 UNION
 SELECT * FROM ParticipantReportMarch
@@ -144,4 +144,10 @@ FROM TotalForCoaches, TotalForParticipants;
 
 -- 6. Well Formed Groups!
 
-#Check if groups have more than one contender
+CREATE OR REPLACE VIEW GetAllGroupIDS
+AS
+SELECT idContender
+FROM Contender
+WHERE ContType = "Group";
+
+SELECT * FROM GetAllGroupIDS;
