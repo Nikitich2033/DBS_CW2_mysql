@@ -38,7 +38,7 @@ ORDER BY CoachName, CoachSurname;
 -- 4. Most Expensive Contender
 
 
---SELECT TOTAL DAILY SALARY OF EACH PARTICIPANT 
+-- SELECT TOTAL DAILY SALARY OF EACH PARTICIPANT 
 CREATE OR REPLACE VIEW Total_Daily_Salary_By_idParticipant
 AS
 SELECT stageName, Participant.idParticipant as PART_ID, 
@@ -53,7 +53,7 @@ SELECT stageName, Participant.idParticipant as PART_ID,
         ON TVShow.idShow = ContenderInShow.idShow
         GROUP BY idParticipant;
 
---SELECT TOTAL DAILY SALARY OF EACH PARTICIPANT 
+-- SELECT TOTAL DAILY SALARY OF EACH PARTICIPANT 
 CREATE OR REPLACE VIEW TotalByParticipant
 AS 
 SELECT stageName, PART_ID, CONT_ID,Total_Daily_Salary_By_idParticipant.Total_Daily_Salary as Participant_Total_Daily_Salary
@@ -159,7 +159,7 @@ FROM CountParticipantInGroups
 WHERE No_Of_Participants_In_Group > 1;
 
 
---TEST BEFORE INSERTING A NON WELL FORMED GROUP
+-- TEST BEFORE INSERTING A NON WELL FORMED GROUP
 -- Compare the number of rows in the 2 views and see if they are the same
 SELECT  
      CASE WHEN (SELECT COUNT(*) FROM OnlyWellFormedGroups) = (SELECT COUNT(*) FROM CountParticipantInGroups)
@@ -173,7 +173,7 @@ INSERT INTO Contender VALUES ("FakeGroup",'Group',9,2);
 INSERT INTO Participant VALUES ("Fake","Guy",'1993-10-13',11,"2745763957",100.00,"Male",9);              
 
 
---TEST AFTER INSERTING A NON WELL FORMED GROUP
+-- TEST AFTER INSERTING A NON WELL FORMED GROUP
 -- Compare the number of rows in the 2 views and see if they are the same
 SELECT  
      CASE WHEN (SELECT COUNT(*) FROM OnlyWellFormedGroups) = (SELECT COUNT(*) FROM CountParticipantInGroups)
@@ -182,7 +182,7 @@ SELECT
      ELSE "False"
      END AS All_Groups_Are_WellFormed;
 
---DELETING THE ENTRIES INSERTED FOR TESTING
+-- DELETING THE ENTRIES INSERTED FOR TESTING
 DELETE FROM Participant WHERE PartName = "Fake";
 DELETE FROM Contender WHERE stageName = "FakeGroup";
 

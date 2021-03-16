@@ -49,7 +49,7 @@ ADD COLUMN LeaveTime TIME NOT NULL;
 
 -- As mentioned in the specification, we only need to update Arrival and Departure times
 -- for the past shows, that is why there is a comparison to the current date
--- all the future shows remain dafaulted at 00:00:00
+-- all the future shows remain dafaulted at 00:0000
 UPDATE CoachInShow,
         TVShow
 SET ArriveTime = TVShow.startTime - INTERVAL 1 HOUR,
@@ -63,7 +63,3 @@ SET ArriveTime = TVShow.startTime - INTERVAL 1 HOUR,
     LeaveTime = TVShow.endTime + INTERVAL 1 HOUR  
 WHERE ContenderInShow.idShow = TVShow.idShow
 AND TVShow.ShowDate < CAST(CURRENT_TIMESTAMP AS DATE);
-
-
-SELECT * FROM CoachInShow ;
-SELECT * FROM ContenderInShow;
