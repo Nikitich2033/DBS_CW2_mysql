@@ -172,12 +172,7 @@ SELECT * FROM CountParticipantInGroups;
 
 SELECT * FROM OnlyWellFormedGroups;
 
-SELECT 
-     CASE WHEN (SELECT COUNT(*) FROM OnlyWellFormedGroups) = (SELECT COUNT(*) FROM CountParticipantInGroups)
-     THEN 1 
-     ELSE 0 
-     END AS All_Groups_Are_WellFormed
-FROM OnlyWellFormedGroups, CountParticipantInGroups;
+SELECT  (SELECT COUNT(*) FROM OnlyWellFormedGroups) = (SELECT COUNT(*) FROM CountParticipantInGroups) as All_Groups_Are_WellFormed;
 
 DELETE FROM Participant WHERE PartName = "Fake";
 DELETE FROM Contender WHERE stageName = "FakeGroup";
