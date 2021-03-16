@@ -4,7 +4,7 @@
 -- 
 
 -- DO NOT use these SQL commands in your submission(they will cause an 
---  error on the NMS database server):
+-- error on the NMS database server):
 -- CREATE SCHEMA 
 -- USE 
 
@@ -13,7 +13,8 @@
 -- Remove contender with the lowest total salary
 
 
--- Views that store queries 
+-- This view has to be re-weritten, because it already exists in select.sql
+-- but it uses dailySalary, which was removed after running update.sql
 CREATE OR REPLACE VIEW Total_Daily_Salary_By_idParticipant
 AS
 SELECT stageName, Participant.idParticipant as PART_ID, 
@@ -39,7 +40,7 @@ WHERE Total_Daily_Salary_Per_Contender = (SELECT MIN(Total_Daily_Salary_Per_Cont
 AND TotalByContender.stageName = Contender.stageName;
 
 
---Delete only from Contender, entries in ContenderInShow and Participant 
+-- Delete only from Contender, entries in ContenderInShow and Participant 
 -- are deleted automatically because of ON DELETE CASCADE 
 DELETE Contender
 FROM  Contender, LowestTotalSalary
