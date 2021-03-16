@@ -164,16 +164,19 @@ FROM CountParticipantInGroups
 WHERE No_Of_Participants_In_Group > 1;
 
 INSERT INTO Contender VALUES ("FakeGroup",'Group',9,2);   
-INSERT INTO Participant VALUES ("Fake","Guy",'1993-10-13',11,"2745763957",100.00,"Male",9);
-
-SELECT 
-    (CASE WHEN COUNT(OnlyWellFormedGroups.CONT_ID) = COUNT(CountParticipantInGroups.CONT_ID) 
-                THEN 1 ELSE 0 END) AS All_Groups_Are_WellFormed
-FROM OnlyWellFormedGroups, CountParticipantInGroups
-WHERE OnlyWellFormedGroups.CONT_ID = CountParticipantInGroups.CONT_ID;                
+INSERT INTO Participant VALUES ("Fake","Guy",'1993-10-13',11,"2745763957",100.00,"Male",9);              
 
 SELECT * FROM GetAllGroupIDS;
 
 SELECT * FROM CountParticipantInGroups;
 
 SELECT * FROM OnlyWellFormedGroups;
+
+SELECT 
+    (CASE WHEN COUNT(OnlyWellFormedGroups.CONT_ID) = COUNT(CountParticipantInGroups.CONT_ID) 
+                THEN 1 ELSE 0 END) AS All_Groups_Are_WellFormed
+FROM OnlyWellFormedGroups, CountParticipantInGroups
+WHERE OnlyWellFormedGroups.CONT_ID = CountParticipantInGroups.CONT_ID;  
+
+DELETE FROM Contender WHERE stageName = "FakeGroup";
+DELETE FROM Participant WHERE PartName = "Fake";
