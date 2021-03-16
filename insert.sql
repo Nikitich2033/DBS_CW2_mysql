@@ -127,13 +127,6 @@ INSERT INTO ContenderInShow VALUES
 
 
 
-SELECT * from Coach;
-SELECT * FROM TVShow;
-SELECT * FROM Participant;
-SELECT * FROM Contender;
-SELECT * FROM ContenderInShow;
-SELECT * FROM CoachInShow;
-
 
 
 
