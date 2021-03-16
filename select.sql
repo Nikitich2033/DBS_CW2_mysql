@@ -175,8 +175,7 @@ SELECT * FROM OnlyWellFormedGroups;
 SELECT 
     (CASE WHEN COUNT(OnlyWellFormedGroups.CONT_ID) = COUNT(CountParticipantInGroups.CONT_ID) 
                 THEN 1 ELSE 0 END) AS All_Groups_Are_WellFormed
-FROM OnlyWellFormedGroups, CountParticipantInGroups
-WHERE OnlyWellFormedGroups.CONT_ID = CountParticipantInGroups.CONT_ID;  
+FROM OnlyWellFormedGroups, CountParticipantInGroups;
 
-DELETE FROM Contender WHERE stageName = "FakeGroup";
 DELETE FROM Participant WHERE PartName = "Fake";
+DELETE FROM Contender WHERE stageName = "FakeGroup";
