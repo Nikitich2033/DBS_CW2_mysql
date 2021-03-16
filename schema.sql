@@ -44,7 +44,7 @@ CREATE TABLE Participant(
     PartSurname VARCHAR(15) NOT NULL,
     DoB DATE NOT NULL,
     idParticipant INT UNIQUE NOT NULL,
---Phone number is just a sequence of 10 numbers without a country code
+-- Phone number is just a sequence of 10 numbers without a country code
     phone INTEGER(10) UNIQUE NOT NULL,
     dailySalary DECIMAL(10,2) NOT NULL,
     gender VARCHAR(6) NOT NULL,
