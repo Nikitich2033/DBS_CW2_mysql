@@ -40,7 +40,8 @@ ORDER BY CoachName, CoachSurname;
 
 CREATE OR REPLACE VIEW Total_Daily_Salary_By_idParticipant
 AS 
-SELECT stageName, Participant.idParticipant as PART_ID, Participant.idContender as CONT_ID, dailySalary * COUNT(TVShow.idShow) AS Total_Daily_Salary
+SELECT stageName, Participant.idParticipant AS PART_ID, 
+Participant.idContender AS CONT_ID, dailySalary * COUNT(TVShow.idShow) AS Total_Daily_Salary
 FROM Participant
 LEFT JOIN Contender
 ON Participant.idContender = Contender.idContender
@@ -48,7 +49,7 @@ LEFT JOIN ContenderInShow
 ON Contender.idContender = ContenderInShow.idContender
 LEFT JOIN TVShow
 ON TVShow.idShow = ContenderInShow.idShow
-GROUP BY idParticipant
+GROUP BY idParticipant;
 
 
 -- SELECT ONLY THE ENTRY WITH THE HIGHEST SALARY 
