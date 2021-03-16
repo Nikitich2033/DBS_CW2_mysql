@@ -46,6 +46,10 @@ ADD COLUMN LeaveTime TIME NOT NULL;
 
 -- 3. Set the arrival time to one hour before the show started and the departure time to one hour after the end time.
 
+
+-- As mentioned in the specification, we only need to update Arrival and Departure times
+-- for the past shows, that is why there is a comparison to the current date
+-- all the future shows remain dafaulted at 00:00:00
 UPDATE CoachInShow,
         TVShow
 SET ArriveTime = TVShow.startTime - INTERVAL 1 HOUR,
@@ -61,5 +65,5 @@ WHERE ContenderInShow.idShow = TVShow.idShow
 AND TVShow.ShowDate < CAST(CURRENT_TIMESTAMP AS DATE);
 
 
-SELECT * FROM CoachInShow;
+SELECT * FROM CoachInShow ;
 SELECT * FROM ContenderInShow;
