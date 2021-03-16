@@ -4,16 +4,20 @@
 -- 
 
 -- DO NOT use these SQL commands in your submission(they will cause an 
---  error on the NMS database server):
+-- error on the NMS database server):
 -- CREATE SCHEMA 
 -- USE 
--- vim change
+
+
 CREATE TABLE Coach(
      CoachName VARCHAR (15) NOT NULL,
      CoachSurname VARCHAR(15) NOT NULL,
      DoB DATE NOT NULL,
      idCoach INT UNIQUE NOT NULL,
-     phone VARCHAR (10) UNIQUE NOT NULL,
+-- Phone number is just a sequence of 10 numbers without a country code
+     phone INTEGER(10) UNIQUE NOT NULL,
+-- Salary is defined as a decimal with 10 numbers in front and 2 numbers 
+-- after the decimal point, because salaries are highly unlikely to exceed that
      dailySalary DECIMAL(10,2) NOT NULL,
      gender VARCHAR(6) NOT NULL,
      PRIMARY KEY(idCoach)            
@@ -40,7 +44,8 @@ CREATE TABLE Participant(
     PartSurname VARCHAR(15) NOT NULL,
     DoB DATE NOT NULL,
     idParticipant INT UNIQUE NOT NULL,
-    phone VARCHAR(10) UNIQUE NOT NULL,
+--Phone number is just a sequence of 10 numbers without a country code
+    phone INTEGER(10) UNIQUE NOT NULL,
     dailySalary DECIMAL(10,2) NOT NULL,
     gender VARCHAR(6) NOT NULL,
     idContender INT NOT NULL,
@@ -52,7 +57,7 @@ CREATE TABLE Participant(
 );
 
 -- location can be NULL when it takes place in the TV studio
-
+-- Location can be anything, so it is just a varchar with a 25 character limit.
 CREATE TABLE TVShow(
     
     ShowDate DATE NOT NULL,
@@ -69,11 +74,13 @@ CREATE TABLE CoachInShow(
     PRIMARY KEY(idCoach,idShow),
     FOREIGN KEY (idCoach) 
 		REFERENCES Coach(idCoach)
+-- When a coach is deleted, occurences of that coach are deleted.
         ON DELETE CASCADE
         ON UPDATE CASCADE,
 
     FOREIGN KEY (idShow) 
         REFERENCES TVShow(idShow)
+-- When a show is deleted, occurences of that show are deleted.
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
@@ -84,10 +91,12 @@ CREATE TABLE ContenderInShow(
     PRIMARY KEY(idContender,idShow),
     FOREIGN KEY (idShow) 
 		REFERENCES TVShow(idShow)
-		ON DELETE RESTRICT
+-- When a show is deleted, occurences of that show are deleted.
+		ON DELETE CASCADE
         ON UPDATE CASCADE,
     FOREIGN KEY (idContender)
 		REFERENCES Contender(idContender)
+-- When a contender is deleted, occurences of that contender are also deleted.
 		ON DELETE CASCADE
         ON UPDATE CASCADE
 );
