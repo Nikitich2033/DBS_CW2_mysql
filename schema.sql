@@ -85,6 +85,6 @@ CREATE TABLE ContenderInShow(
         ON UPDATE CASCADE,
     FOREIGN KEY (idContender)
 		REFERENCES Contender(idContender)
-		ON DELETE RESTRICT
+		ON DELETE CASCADE
         ON UPDATE CASCADE
 );
