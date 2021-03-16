@@ -38,6 +38,19 @@ ORDER BY CoachName, CoachSurname;
 -- 4. Most Expensive Contender
     
 
+CREATE OR REPLACE VIEW Total_Daily_Salary_By_idParticipant
+AS 
+SELECT stageName, Participant.idParticipant as PART_ID, Participant.idContender as CONT_ID, dailySalary * COUNT(TVShow.idShow) AS Total_Daily_Salary
+FROM Participant
+LEFT JOIN Contender
+ON Participant.idContender = Contender.idContender
+LEFT JOIN ContenderInShow
+ON Contender.idContender = ContenderInShow.idContender
+LEFT JOIN TVShow
+ON TVShow.idShow = ContenderInShow.idShow
+GROUP BY idParticipant
+
+
 -- SELECT ONLY THE ENTRY WITH THE HIGHEST SALARY 
 SELECT stageName, Total_Daily_Salary_Per_Contender as Highest_Total_Daily_Salary
 FROM(
@@ -45,18 +58,9 @@ FROM(
     SELECT stageName, CONT_ID, SUM(Participant_Total_Daily_Salary) as Total_Daily_Salary_Per_Contender
         FROM(
 -- SELECT TOTAL DAILY SALARIES OF ALL PARTICIPANTS
-            SELECT stageName, PART_ID, CONT_ID,Total_Daily_Salary_Per_Contender_Participant.Total_Daily_Salary as Participant_Total_Daily_Salary
+            SELECT stageName, PART_ID, CONT_ID,Total_Daily_Salary_By_idParticipant.Total_Daily_Salary as Participant_Total_Daily_Salary
             FROM (
-        
-                SELECT stageName, Participant.idParticipant as PART_ID, Participant.idContender as CONT_ID, dailySalary * COUNT(TVShow.idShow) AS Total_Daily_Salary
-                FROM Participant
-                LEFT JOIN Contender
-                ON Participant.idContender = Contender.idContender
-                LEFT JOIN ContenderInShow
-                ON Contender.idContender = ContenderInShow.idContender
-                LEFT JOIN TVShow
-                ON TVShow.idShow = ContenderInShow.idShow
-                GROUP BY idParticipant) Total_Daily_Salary_Per_Contender_Participant
+                Total_Daily_Salary_By_idParticipant
                 GROUP BY PART_ID) TotalByParticipant
                 GROUP BY stageName
 ) TotalByContender
@@ -65,18 +69,9 @@ WHERE Total_Daily_Salary_Per_Contender = (SELECT MAX(Total_Daily_Salary_Per_Cont
                                             FROM (
                                                 SELECT stageName, CONT_ID, SUM(Participant_Total_Daily_Salary) as Total_Daily_Salary_Per_Contender
                                                 FROM(
-                                                    SELECT stageName, PART_ID, CONT_ID,Total_Daily_Salary_Per_Contender_Participant.Total_Daily_Salary as Participant_Total_Daily_Salary
+                                                    SELECT stageName, PART_ID, CONT_ID,Total_Daily_Salary_By_idParticipant.Total_Daily_Salary as Participant_Total_Daily_Salary
                                                     FROM (
-                                                
-                                                        SELECT stageName, Participant.idParticipant as PART_ID, Participant.idContender as CONT_ID, dailySalary * COUNT(TVShow.idShow) AS Total_Daily_Salary
-                                                        FROM Participant
-                                                        LEFT JOIN Contender
-                                                        ON Participant.idContender = Contender.idContender
-                                                        LEFT JOIN ContenderInShow
-                                                        ON Contender.idContender = ContenderInShow.idContender
-                                                        LEFT JOIN TVShow
-                                                        ON TVShow.idShow = ContenderInShow.idShow
-                                                        GROUP BY idParticipant) Total_Daily_Salary_Per_Contender_Participant
+                                                        Total_Daily_Salary_By_idParticipant
                                                         GROUP BY PART_ID) TotalByParticipant
                                                         GROUP BY stageName
                                                         )TotalByContender );
