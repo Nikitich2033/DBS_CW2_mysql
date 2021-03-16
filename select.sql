@@ -155,7 +155,9 @@ AS
 SELECT Contender.idContender, COUNT(Participant.idContender)
 FROM Contender, Participant
 WHERE EXISTS
-    (SELECT Contender.idContender FROM GetAllGroupIDS, Contender WHERE idContender = Participant.idContender);
+    (SELECT Contender.idContender 
+     FROM GetAllGroupIDS, Contender 
+     WHERE Contender.idContender = Participant.idContender);
 
 
 SELECT * FROM GetAllGroupIDS;
