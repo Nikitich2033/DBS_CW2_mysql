@@ -44,6 +44,9 @@ ALTER TABLE ContenderInShow
 ADD COLUMN ArriveTime TIME NOT NULL,
 ADD COLUMN LeaveTime TIME NOT NULL;
 
+
+-- 3. Set the arrival time to one hour before the show started and the departure time to one hour after the end time.
+
 UPDATE CoachInShow,
         TVShow
 SET ArriveTime = TVShow.startTime - INTERVAL 1 HOUR,
@@ -55,10 +58,3 @@ UPDATE ContenderInShow,
 SET ArriveTime = TVShow.startTime - INTERVAL 1 HOUR,
     LeaveTime = TVShow.endTime + INTERVAL 1 HOUR  
 WHERE ContenderInShow.idShow = TVShow.idShow;
-
-
-
-
-
-select * from CoachInShow;
-select * from ContenderInShow;
