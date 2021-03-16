@@ -49,9 +49,9 @@ ADD COLUMN ArriveTime TIME NOT NULL,
 ADD COLUMN LeaveTime TIME NOT NULL;
 
 UPDATE CoachInShow
-SET ArriveTime = TVShow.startTime - "02:00"
-FROM TVShow
-INNER JOIN CoachInShow ON TVShow.idShow = CoachInShow.idShow;
+SET ArriveTime = ShowTimes.startTime - "02:00"
+FROM ShowTimes
+INNER JOIN CoachInShow ON ShowTimes.idShow = CoachInShow.idShow;
 
 
 
