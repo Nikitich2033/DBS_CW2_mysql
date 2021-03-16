@@ -41,21 +41,30 @@ CREATE OR REPLACE VIEW TotalByContender
 AS
 -- SELECT THE SUM OF SALARIES FOR EACH CONTENDER
 SELECT stageName, CONT_ID, SUM(Participant_Total_Daily_Salary) as Total_Daily_Salary_Per_Contender
-FROM(
--- SELECT TOTAL DAILY SALARIES OF ALL PARTICIPANTS
-            SELECT stageName, PART_ID, CONT_ID,Total_Daily_Salary_By_idParticipant.Total_Daily_Salary as Participant_Total_Daily_Salary
-            FROM (
-            SELECT stageName, Participant.idParticipant as PART_ID, Participant.idContender as CONT_ID, dailySalary * COUNT(TVShow.idShow) AS Total_Daily_Salary
-            FROM Participant
-            LEFT JOIN Contender
-            ON Participant.idContender = Contender.idContender
-            LEFT JOIN ContenderInShow
-            ON Contender.idContender = ContenderInShow.idContender
-            LEFT JOIN TVShow
-            ON TVShow.idShow = ContenderInShow.idShow
-            GROUP BY idParticipant) Total_Daily_Salary_By_idParticipant
-            GROUP BY PART_ID) TotalByParticipant
-            GROUP BY stageName;
+FROM TotalByParticipant
+-- SELECT TOTAL DAILY SALARIES OF ALL PARTICIPANTS     
+GROUP BY stageName;
+
+
+CREATE OR REPLACE VIEW Total_Daily_Salary_By_idParticipant
+AS
+SELECT stageName, Participant.idParticipant as PART_ID, 
+                Participant.idContender as CONT_ID, 
+                dailySalary * COUNT(TVShow.idShow) AS Total_Daily_Salary
+        FROM Participant
+        LEFT JOIN Contender
+        ON Participant.idContender = Contender.idContender
+        LEFT JOIN ContenderInShow
+        ON Contender.idContender = ContenderInShow.idContender
+        LEFT JOIN TVShow
+        ON TVShow.idShow = ContenderInShow.idShow
+        GROUP BY idParticipant
+
+CREATE OR REPLACE VIEW TotalByParticipant
+AS 
+SELECT stageName, PART_ID, CONT_ID,Total_Daily_Salary_By_idParticipant.Total_Daily_Salary as Participant_Total_Daily_Salary
+FROM Total_Daily_Salary_By_idParticipant
+GROUP BY PART_ID;
 
 
 
@@ -74,20 +83,7 @@ WHERE Total_Daily_Salary_Per_Contender = (SELECT MAX(Total_Daily_Salary_Per_Cont
                                                 SELECT stageName, CONT_ID, SUM(Participant_Total_Daily_Salary) as Total_Daily_Salary_Per_Contender
                                                 FROM(
                                                     SELECT stageName, PART_ID, CONT_ID,Total_Daily_Salary_Per_Contender_Participant.Total_Daily_Salary as Participant_Total_Daily_Salary
-                                                    FROM (
-                                                
-                                                        SELECT stageName, Participant.idParticipant as PART_ID, Participant.idContender as CONT_ID, dailySalary * COUNT(TVShow.idShow) AS Total_Daily_Salary
-                                                        FROM Participant
-                                                        LEFT JOIN Contender
-                                                        ON Participant.idContender = Contender.idContender
-                                                        LEFT JOIN ContenderInShow
-                                                        ON Contender.idContender = ContenderInShow.idContender
-                                                        LEFT JOIN TVShow
-                                                        ON TVShow.idShow = ContenderInShow.idShow
-                                                        GROUP BY idParticipant) Total_Daily_Salary_Per_Contender_Participant
-                                                        GROUP BY PART_ID) TotalByParticipant
-                                                        GROUP BY stageName
-                                                        )TotalByContender );
+                                                    FROM  TotalByContender;
 
 
 -- 5. March Payment Report
