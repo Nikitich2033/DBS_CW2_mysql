@@ -44,7 +44,7 @@ CREATE TABLE Participant(
     PRIMARY KEY(idParticipant),
     FOREIGN KEY(idContender) 
         REFERENCES Contender(idContender)
-        ON DELETE RESTRICT
+        ON DELETE CASCADE
         ON UPDATE CASCADE
 );
 
