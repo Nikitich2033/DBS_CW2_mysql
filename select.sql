@@ -68,20 +68,12 @@ GROUP BY stageName;
 
 
 
-
-
-
-
 -- SELECT ONLY THE ENTRY WITH THE HIGHEST SALARY 
-
--- SELECT THE SUM OF SALARIES FOR EACH CONTENDER
-SELECT stageName, CONT_ID, SUM(Participant_Total_Daily_Salary) as Total_Daily_Salary_Per_Contender
+SELECT stageName, Total_Daily_Salary_Per_Contender as Highest_Total_Daily_Salary
 FROM TotalByContender
--- SELECT TOTAL DAILY SALARIES OF ALL PARTICIPANTS
-            
 -- COMPARE TO THE HIGHEST TOTAL SALARY OF A SINGLE CONTENDER
 WHERE Total_Daily_Salary_Per_Contender = (SELECT MAX(Total_Daily_Salary_Per_Contender)
-                                           FROM TotalByContender);
+                                            FROM TotalByContender);
 
 
 -- 5. March Payment Report
