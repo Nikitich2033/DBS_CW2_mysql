@@ -152,12 +152,12 @@ WHERE ContType = "Group";
 
 CREATE OR REPLACE VIEW CountParticipantInGroups
 AS
-SELECT Contender.idContender, COUNT(Participant.idContender)
-FROM Contender, Participant
-WHERE EXISTS
-    (SELECT Contender.idContender 
-     FROM GetAllGroupIDS, Contender 
-     WHERE Contender.idContender = Participant.idContender);
+SELECT GetAllGroupIDS.idContender, COUNT(Participant.idContender)
+FROM GetAllGroupIDS, Participant
+WHERE Participant.idContender = GetAllGroupIDS.idContender
+GROUP BY idContender;
+
+
 
 
 SELECT * FROM GetAllGroupIDS;
