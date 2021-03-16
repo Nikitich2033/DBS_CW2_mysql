@@ -50,7 +50,7 @@ ADD COLUMN LeaveTime TIME NOT NULL;
 
 UPDATE CoachInShow,
         TVShow
-SET ArriveTime = TVShow.startTime - INTERVAL 2 HOUR;
+SET ArriveTime = TVShow.startTime - INTERVAL 2 HOUR
 WHERE CoachInShow.idShow = TVShow.idShow;
 
 
