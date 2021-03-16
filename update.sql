@@ -48,10 +48,10 @@ ALTER TABLE ContenderInShow
 ADD COLUMN ArriveTime TIME NOT NULL,
 ADD COLUMN LeaveTime TIME NOT NULL;
 
-UPDATE CoachInShow
-SET ArriveTime = (SELECT startTime 
-                  FROM TVShow.startTime
-                  WHERE TVShow.idShow = CoachInShow.idShow) - "02:00";
+UPDATE CoachInShow,
+        TVShow
+SET ArriveTime = TVShow.startTime - "02:00"
+WHERE CoachInShow.idShow = TVShow.idShow;
 
 
 
