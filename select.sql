@@ -37,14 +37,6 @@ ORDER BY CoachName, CoachSurname;
 
 -- 4. Most Expensive Contender
 
-CREATE OR REPLACE VIEW TotalByContender
-AS
--- SELECT THE SUM OF SALARIES FOR EACH CONTENDER
-SELECT stageName, CONT_ID, SUM(Participant_Total_Daily_Salary) as Total_Daily_Salary_Per_Contender
-FROM TotalByParticipant
--- SELECT TOTAL DAILY SALARIES OF ALL PARTICIPANTS     
-GROUP BY stageName;
-
 
 CREATE OR REPLACE VIEW Total_Daily_Salary_By_idParticipant
 AS
@@ -58,13 +50,25 @@ SELECT stageName, Participant.idParticipant as PART_ID,
         ON Contender.idContender = ContenderInShow.idContender
         LEFT JOIN TVShow
         ON TVShow.idShow = ContenderInShow.idShow
-        GROUP BY idParticipant
+        GROUP BY idParticipant;
 
 CREATE OR REPLACE VIEW TotalByParticipant
 AS 
 SELECT stageName, PART_ID, CONT_ID,Total_Daily_Salary_By_idParticipant.Total_Daily_Salary as Participant_Total_Daily_Salary
 FROM Total_Daily_Salary_By_idParticipant
 GROUP BY PART_ID;
+
+CREATE OR REPLACE VIEW TotalByContender
+AS
+-- SELECT THE SUM OF SALARIES FOR EACH CONTENDER
+SELECT stageName, CONT_ID, SUM(Participant_Total_Daily_Salary) as Total_Daily_Salary_Per_Contender
+FROM TotalByParticipant
+-- SELECT TOTAL DAILY SALARIES OF ALL PARTICIPANTS     
+GROUP BY stageName;
+
+
+
+
 
 
 
