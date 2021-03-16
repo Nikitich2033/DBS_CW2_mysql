@@ -50,13 +50,15 @@ UPDATE CoachInShow,
         TVShow
 SET ArriveTime = TVShow.startTime - INTERVAL 1 HOUR,
     LeaveTime = TVShow.endTime + INTERVAL 1 HOUR  
-WHERE CoachInShow.idShow = TVShow.idShow;
+WHERE CoachInShow.idShow = TVShow.idShow
+AND TVShow.ShowDate < CAST(CURRENT_TIMESTAMP AS DATE);
 
 UPDATE ContenderInShow,
         TVShow
 SET ArriveTime = TVShow.startTime - INTERVAL 1 HOUR,
     LeaveTime = TVShow.endTime + INTERVAL 1 HOUR  
-WHERE ContenderInShow.idShow = TVShow.idShow;
+WHERE ContenderInShow.idShow = TVShow.idShow
+AND TVShow.ShowDate < CAST(CURRENT_TIMESTAMP AS DATE);
 
 
 SELECT * FROM CoachInShow;
