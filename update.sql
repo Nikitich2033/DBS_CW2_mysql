@@ -56,5 +56,7 @@ SET ArriveTime = (SELECT startTime
 
 
 
+
+
 select * from CoachInShow;
 select * from ContenderInShow;
