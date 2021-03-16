@@ -169,7 +169,8 @@ INSERT INTO Participant VALUES ("Fake","Guy",'1993-10-13',11,"2745763957",100.00
 SELECT 
     (CASE WHEN COUNT(OnlyWellFormedGroups.CONT_ID) = COUNT(CountParticipantInGroups.CONT_ID) 
                 THEN 1 ELSE 0 END) AS All_Groups_Are_WellFormed
-FROM OnlyWellFormedGroups, CountParticipantInGroups;                
+FROM OnlyWellFormedGroups, CountParticipantInGroups
+WHERE OnlyWellFormedGroups.CONT_ID = CountParticipantInGroups.CONT_ID;                
 
 SELECT * FROM GetAllGroupIDS;
 

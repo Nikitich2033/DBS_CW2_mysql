@@ -48,7 +48,7 @@ CREATE TABLE Participant(
         ON UPDATE CASCADE
 );
 
-##location can be NULL when it takes place in the TV studio
+-- location can be NULL when it takes place in the TV studio
 
 CREATE TABLE TVShow(
     
