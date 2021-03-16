@@ -51,7 +51,7 @@ ADD COLUMN LeaveTime TIME NOT NULL;
 UPDATE CoachInShow
 SET ArriveTime = ShowTimes.startTime - "02:00"
 FROM ShowTimes
-INNER JOIN CoachInShow ON ShowTimes.idShow = CoachInShow.idShow;
+WHERE ShowTimes.idShow = CoachInShow.idShow;
 
 
 
