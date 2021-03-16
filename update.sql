@@ -47,7 +47,7 @@ ADD COLUMN LeaveTime TIME NOT NULL;
 
 -- As mentioned in the specification, we only need to update Arrival and Departure times
 -- for the past shows, that is why there is a comparison to the current date
--- all the future shows remain dafaulted at 00:0000
+-- all the future shows remain defaulted at 00:00:00
 UPDATE CoachInShow,
         TVShow
 SET ArriveTime = TVShow.startTime - INTERVAL 1 HOUR,
