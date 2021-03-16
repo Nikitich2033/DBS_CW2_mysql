@@ -23,7 +23,7 @@ WHERE Total_Daily_Salary_Per_Contender = (SELECT MIN(Total_Daily_Salary_Per_Cont
                                             FROM TotalByContender) 
 AND TotalByContender.stageName = Contender.stageName;
 
-DELETE Contender, ContenderInShow, Participant
+DELETE Contender,Participant, ContenderInShow 
 FROM  Contender
 INNER JOIN ContenderInShow ON Contender.idContender = ContenderInShow.idContender
 INNER JOIN Participant ON Participant.idContender = ContenderInShow.idContender;
