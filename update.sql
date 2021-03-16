@@ -13,10 +13,14 @@
 -- 1. Hourly Payment instead 
 
 ALTER TABLE Coach 
-RENAME COLUMN dailySalary to hourlyPayment;
+CHANGE COLUMN dailySalary 
+                hourlyPayment
+                DECIMAL(10,2) NOT NULL,;
 
 ALTER TABLE Participant
-RENAME COLUMN dailySalary hourlyPayment;
+CHANGE COLUMN dailySalary 
+                hourlyPayment
+                DECIMAL(10,2) NOT NULL,;
 
 UPDATE Coach 
 SET hourlyPayment = hourlyPayment/4;
