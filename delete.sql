@@ -14,7 +14,8 @@
 -- A view with total salaries of every contender already exists: TotalByContender.
 -- It was made to get the contender with the highest salary.
 
-SELECT stageName, idContender, Total_Daily_Salary_Per_Contender as Highest_Total_Daily_Salary
+SELECT TotalByContender.stageName, TotalByContender.idContender, 
+       Total_Daily_Salary_Per_Contender as Highest_Total_Daily_Salary
 FROM TotalByContender, Contender
 WHERE Total_Daily_Salary_Per_Contender = (SELECT MAX(Total_Daily_Salary_Per_Contender)
                                             FROM TotalByContender);
