@@ -46,14 +46,14 @@ ADD COLUMN LeaveTime TIME NOT NULL;
 
 UPDATE CoachInShow,
         TVShow
-SET ArriveTime = TVShow.startTime - INTERVAL 1 HOUR
-SET LeaveTime = TVShow.endTime + INTERVAL 1 HOUR  
+SET ArriveTime = TVShow.startTime - INTERVAL 1 HOUR,
+    LeaveTime = TVShow.endTime + INTERVAL 1 HOUR  
 WHERE CoachInShow.idShow = TVShow.idShow;
 
 UPDATE ContenderInShow,
         TVShow
-SET ArriveTime = TVShow.startTime - INTERVAL 1 HOUR
-SET LeaveTime = TVShow.endTime + INTERVAL 1 HOUR  
+SET ArriveTime = TVShow.startTime - INTERVAL 1 HOUR,
+    LeaveTime = TVShow.endTime + INTERVAL 1 HOUR  
 WHERE ContenderInShow.idShow = TVShow.idShow;
 
 
