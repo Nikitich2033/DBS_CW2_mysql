@@ -37,10 +37,18 @@ select * from Participant;
 
 
 ALTER TABLE CoachInShow
-ADD COLUMN ArriveTime TIME NOT NULL;
+ADD COLUMN ArriveTime TIME NOT NULL,
+ADD COLUMN LeaveTime TIME NOT NULL;
 
 ALTER TABLE ContenderInShow
-ADD COLUMN ArriveTime TIME NOT NULL;
+ADD COLUMN ArriveTime TIME NOT NULL,
+ADD COLUMN LeaveTime TIME NOT NULL;
+
+UPDATE CoachInShow
+SET ArriveTime = TVShow.startTime - "02:00";
+WHERE CoachInShow.idShow = TVShow.idShow;
+
+
 
 select * from CoachInShow;
 select * from ContenderInShow;
