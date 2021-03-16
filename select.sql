@@ -82,7 +82,7 @@ FROM(
             SELECT stageName, PART_ID, CONT_ID,Total_Daily_Salary_By_idParticipant.Total_Daily_Salary as Participant_Total_Daily_Salary
             FROM TotalByContender
 -- COMPARE TO THE HIGHEST TOTAL SALARY OF A SINGLE CONTENDER
-WHERE Total_Daily_Salary_Per_Contender = (SELECT MAX(Total_Daily_Salary_Per_Contender)
+WHERE Total_Daily_Salary_Per_Contender = (SELECT MAX(Total_Daily_Salary_Per_Contender
                                            FROM TotalByContender);
 
 
