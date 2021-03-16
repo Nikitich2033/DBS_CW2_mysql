@@ -17,5 +17,6 @@
 SELECT TotalByContender.stageName, idContender, 
        Total_Daily_Salary_Per_Contender as Highest_Total_Daily_Salary
 FROM TotalByContender, Contender
-WHERE Total_Daily_Salary_Per_Contender = (SELECT MAX(Total_Daily_Salary_Per_Contender)
-                                            FROM TotalByContender);
+WHERE Total_Daily_Salary_Per_Contender = (SELECT MIN(Total_Daily_Salary_Per_Contender)
+                                            FROM TotalByContender),
+       TotalByContender.stageName = Contender.stageName;
