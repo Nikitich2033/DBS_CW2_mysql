@@ -152,14 +152,20 @@ WHERE ContType = "Group";
 
 CREATE OR REPLACE VIEW CountParticipantInGroups
 AS
-SELECT GetAllGroupIDS.idContender, COUNT(Participant.idContender)
+SELECT GetAllGroupIDS.idContender AS CONT_ID, COUNT(Participant.idContender) as No_Of_Participants_In_Group
 FROM GetAllGroupIDS, Participant
 WHERE Participant.idContender = GetAllGroupIDS.idContender
 GROUP BY idContender;
 
-
+CREATE OR REPLACE VIEW OnlyWellFormedGroups
+AS
+SELECT CONT_ID, No_Of_Participants_In_Group
+FROM CountParticipantInGroups
+WHERE No_Of_Participants_In_Group > 1;
 
 
 SELECT * FROM GetAllGroupIDS;
 
 SELECT * FROM CountParticipantInGroups;
+
+SELECT * FROM OnlyWellFormedGroups;
