@@ -29,10 +29,6 @@ SET hourlyPayment = hourlyPayment/4;
 UPDATE Participant
 SET hourlyPayment = hourlyPayment/4;
 
-
-select * from Coach;
-select * from Participant;
-
 -- 2. Add new fields to the attendance table to register when coaches and contenders arrive to and leave the shows.
 
 
