@@ -165,7 +165,11 @@ WHERE No_Of_Participants_In_Group > 1;
 
 INSERT INTO Contender VALUES ("FakeGroup",'Group',9,2);   
 INSERT INTO Participant VALUES ("Fake","Guy",'1993-10-13',11,"2745763957",100.00,"Male",9);
-              
+
+SELECT 
+    (CASE WHEN COUNT(OnlyWellFormedGroups.CONT_ID) = COUNT(CountParticipantInGroups.CONT_ID) 
+                THEN 1 ELSE 0 END) AS All_Groups_Are_WellFormed
+FROM OnlyWellFormedGroups, CountParticipantInGroups;                
 
 SELECT * FROM GetAllGroupIDS;
 
