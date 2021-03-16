@@ -155,7 +155,7 @@ AS
 SELECT GetAllGroupIDS.idContender AS CONT_ID, COUNT(Participant.idContender) as No_Of_Participants_In_Group
 FROM GetAllGroupIDS, Participant
 WHERE Participant.idContender = GetAllGroupIDS.idContender
-GROUP BY idContender;
+GROUP BY CONT_ID;
 
 CREATE OR REPLACE VIEW OnlyWellFormedGroups
 AS
