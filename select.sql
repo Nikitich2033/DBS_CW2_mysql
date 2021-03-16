@@ -150,4 +150,13 @@ SELECT idContender
 FROM Contender
 WHERE ContType = "Group";
 
+CREATE OR REPLACE VIEW CountParticipantInGroups
+AS
+SELECT idContender, COUNT(Participant.idContender)
+WHERE EXISTS
+    (SELECT idContender FROM GetAllGroupIDS WHERE idContender = Participant.idContender);
+
+
 SELECT * FROM GetAllGroupIDS;
+
+SELECT * FROM CountParticipantInGroups;
