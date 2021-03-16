@@ -73,16 +73,14 @@ GROUP BY stageName;
 
 
 -- SELECT ONLY THE ENTRY WITH THE HIGHEST SALARY 
-SELECT stageName, Total_Daily_Salary_Per_Contender as Highest_Total_Daily_Salary
-FROM(
+
 -- SELECT THE SUM OF SALARIES FOR EACH CONTENDER
-    SELECT stageName, CONT_ID, SUM(Participant_Total_Daily_Salary) as Total_Daily_Salary_Per_Contender
-        FROM(
+SELECT stageName, CONT_ID, SUM(Participant_Total_Daily_Salary) as Total_Daily_Salary_Per_Contender
+FROM TotalByContender
 -- SELECT TOTAL DAILY SALARIES OF ALL PARTICIPANTS
-            SELECT stageName, PART_ID, CONT_ID,Total_Daily_Salary_By_idParticipant.Total_Daily_Salary as Participant_Total_Daily_Salary
-            FROM TotalByContender
+            
 -- COMPARE TO THE HIGHEST TOTAL SALARY OF A SINGLE CONTENDER
-WHERE Total_Daily_Salary_Per_Contender = (SELECT MAX(Total_Daily_Salary_Per_Contender
+WHERE Total_Daily_Salary_Per_Contender = (SELECT MAX(Total_Daily_Salary_Per_Contender)
                                            FROM TotalByContender);
 
 
