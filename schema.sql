@@ -27,6 +27,9 @@ CREATE TABLE Contender(
     PRIMARY KEY(idContender),
     FOREIGN KEY(idCoach) 
         REFERENCES Coach(idCoach)
+-- could not implement setting a new coach if the previuos one is deleted
+-- But if I was to delete a coach,I would just set ON DELETE to SET DEFAULT 
+-- and alter the Default value of idCoach to a random avaliable coach from the table.
         ON DELETE RESTRICT
         ON UPDATE CASCADE 
     
@@ -71,7 +74,7 @@ CREATE TABLE CoachInShow(
 
     FOREIGN KEY (idShow) 
         REFERENCES TVShow(idShow)
-        ON DELETE RESTRICT
+        ON DELETE CASCADE
         ON UPDATE CASCADE
 );
 

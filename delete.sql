@@ -23,11 +23,16 @@ WHERE Total_Daily_Salary_Per_Contender = (SELECT MIN(Total_Daily_Salary_Per_Cont
                                             FROM TotalByContender) 
 AND TotalByContender.stageName = Contender.stageName;
 
+
+--Delete only from Contender, entries in ContenderInShow and Participant 
+-- are deleted automatically because of ON DELETE CASCADE 
 DELETE Contender
 FROM  Contender, LowestTotalSalary
 WHERE Contender.idContender = LowestTotalSalary.idContender;
 
-
+SELECT * from Coach;
+SELECT * FROM TVShow;
+SELECT * FROM Participant;
 SELECT * FROM Contender;
 SELECT * FROM ContenderInShow;
-SELECT * FROM Participant;
+SELECT * FROM CoachInShow;

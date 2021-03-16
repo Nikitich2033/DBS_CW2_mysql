@@ -185,3 +185,12 @@ SELECT
 --DELETING THE ENTRIES INSERTED FOR TESTING
 DELETE FROM Participant WHERE PartName = "Fake";
 DELETE FROM Contender WHERE stageName = "FakeGroup";
+
+
+
+SELECT * from Coach;
+SELECT * FROM TVShow;
+SELECT * FROM Participant;
+SELECT * FROM Contender;
+SELECT * FROM ContenderInShow;
+SELECT * FROM CoachInShow;

@@ -29,6 +29,9 @@ SET hourlyPayment = hourlyPayment/4;
 UPDATE Participant
 SET hourlyPayment = hourlyPayment/4;
 
+SELECT * FROM Coach;
+SELECT * FROM Participant;
+
 -- 2. Add new fields to the attendance table to register when coaches and contenders arrive to and leave the shows.
 
 
@@ -54,3 +57,7 @@ UPDATE ContenderInShow,
 SET ArriveTime = TVShow.startTime - INTERVAL 1 HOUR,
     LeaveTime = TVShow.endTime + INTERVAL 1 HOUR  
 WHERE ContenderInShow.idShow = TVShow.idShow;
+
+
+SELECT * FROM CoachInShow;
+SELECT * FROM ContenderInShow;
