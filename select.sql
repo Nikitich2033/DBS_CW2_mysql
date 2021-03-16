@@ -163,6 +163,9 @@ SELECT CONT_ID, No_Of_Participants_In_Group
 FROM CountParticipantInGroups
 WHERE No_Of_Participants_In_Group > 1;
 
+INSERT INTO Contender VALUES ("FakeGroup",'Group',9,2);   
+INSERT INTO Participant VALUES ("Fake","Guy",'1993-10-13',11,"2745763957",100.00,"Male",9);
+              
 
 SELECT * FROM GetAllGroupIDS;
 
