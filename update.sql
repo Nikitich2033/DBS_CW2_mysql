@@ -61,3 +61,9 @@ SET ArriveTime = TVShow.startTime - INTERVAL 1 HOUR,
     LeaveTime = TVShow.endTime + INTERVAL 1 HOUR  
 WHERE ContenderInShow.idShow = TVShow.idShow
 AND TVShow.ShowDate < CAST(CURRENT_TIMESTAMP AS DATE);
+
+
+SELECT * FROM Participant;
+SELECT * FROM Contender;
+SELECT * FROM ContenderInShow;
+SELECT * FROM CoachInShow;

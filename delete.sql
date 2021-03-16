@@ -12,6 +12,8 @@
 
 -- Remove contender with the lowest total salary
 
+
+-- Views that store queries 
 CREATE OR REPLACE VIEW Total_Daily_Salary_By_idParticipant
 AS
 SELECT stageName, Participant.idParticipant as PART_ID, 
